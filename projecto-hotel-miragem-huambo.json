@@ -1,0 +1,655 @@
+{
+  "formato": "painel-producao-projecto",
+  "versao": 1,
+  "exportadoEm": "2026-10-07",
+  "projecto": {
+    "id": "hotel-miragem",
+    "name": "Hotel Miragem × Huambo",
+    "client": "Hotel Miragem",
+    "location": "Huambo e província do Huambo",
+    "period": "Dezembro de 2026",
+    "status": "negociação",
+    "currency": "Kz",
+    "days": [
+      {
+        "id": "hgdbo21lx2x",
+        "label": "Dia 1",
+        "theme": "Hotel + Huambo cidade",
+        "locations": [
+          {
+            "id": "kiz5jh9lx2x",
+            "name": "Hotel Miragem",
+            "period": "dia todo",
+            "status": "confirmado",
+            "notes": ""
+          },
+          {
+            "id": "gwt6tzjlx2x",
+            "name": "Praça Agostinho Neto",
+            "period": "manhã",
+            "status": "confirmado",
+            "notes": ""
+          },
+          {
+            "id": "d48c7rolx2x",
+            "name": "Jardim da Cultura",
+            "period": "manhã",
+            "status": "confirmado",
+            "notes": ""
+          },
+          {
+            "id": "x70aqg1lx2x",
+            "name": "Sé Catedral",
+            "period": "tarde",
+            "status": "confirmado",
+            "notes": ""
+          },
+          {
+            "id": "whd8ke7lx2x",
+            "name": "Cidade Alta / vida urbana",
+            "period": "tarde",
+            "status": "confirmado",
+            "notes": ""
+          }
+        ],
+        "crew": [],
+        "callTime": "07:00",
+        "wrapTime": "18:00",
+        "date": "",
+        "sunrise": "",
+        "sunset": "",
+        "weather": "",
+        "planB": "",
+        "meetingPoint": "",
+        "mapUrl": "",
+        "emergency": "",
+        "notes": ""
+      },
+      {
+        "id": "yoeumxulx2x",
+        "label": "Dia 2",
+        "theme": "CFB + mercados + gastronomia + pessoas",
+        "locations": [
+          {
+            "id": "lkw3wu0lx2x",
+            "name": "Estação do CFB",
+            "period": "manhã",
+            "status": "confirmado",
+            "notes": ""
+          },
+          {
+            "id": "ysw3pfslx2x",
+            "name": "Mercados",
+            "period": "manhã",
+            "status": "confirmado",
+            "notes": ""
+          },
+          {
+            "id": "7hc360glx2x",
+            "name": "Gastronomia local",
+            "period": "tarde",
+            "status": "confirmado",
+            "notes": ""
+          },
+          {
+            "id": "2qkcu7ulx2x",
+            "name": "Artesãos e vendedores",
+            "period": "tarde",
+            "status": "pendente",
+            "notes": "confirmar contactos"
+          }
+        ],
+        "crew": [],
+        "callTime": "07:00",
+        "wrapTime": "18:00",
+        "date": "",
+        "sunrise": "",
+        "sunset": "",
+        "weather": "",
+        "planB": "",
+        "meetingPoint": "",
+        "mapUrl": "",
+        "emergency": "",
+        "notes": ""
+      },
+      {
+        "id": "7o24jbalx2x",
+        "label": "Dia 3",
+        "theme": "Morro do Moco",
+        "locations": [
+          {
+            "id": "i5i7z6mlx2x",
+            "name": "Morro / Serra do Moco",
+            "period": "dia todo",
+            "status": "depende do clima",
+            "notes": "condições de estrada e clima"
+          }
+        ],
+        "crew": [],
+        "callTime": "07:00",
+        "wrapTime": "18:00",
+        "date": "",
+        "sunrise": "",
+        "sunset": "",
+        "weather": "",
+        "planB": "",
+        "meetingPoint": "",
+        "mapUrl": "",
+        "emergency": "",
+        "notes": ""
+      },
+      {
+        "id": "1pl7z20lx2x",
+        "label": "Dia 4",
+        "theme": "Nascente do Cubango/Okavango + natureza",
+        "locations": [
+          {
+            "id": "hfyghoolx2x",
+            "name": "Nascente do Rio Cubango/Okavango",
+            "period": "manhã",
+            "status": "depende do clima",
+            "notes": ""
+          },
+          {
+            "id": "pw7adsglx2x",
+            "name": "Natureza envolvente",
+            "period": "tarde",
+            "status": "depende do clima",
+            "notes": ""
+          }
+        ],
+        "crew": [],
+        "callTime": "07:00",
+        "wrapTime": "18:00",
+        "date": "",
+        "sunrise": "",
+        "sunset": "",
+        "weather": "",
+        "planB": "",
+        "meetingPoint": "",
+        "mapUrl": "",
+        "emergency": "",
+        "notes": ""
+      },
+      {
+        "id": "ja07b3alx2x",
+        "label": "Dia 5",
+        "theme": "Bailundo + património cultural",
+        "locations": [
+          {
+            "id": "u0abnwvlx2x",
+            "name": "Bailundo / Ombala yo Mbalundu",
+            "period": "dia todo",
+            "status": "precisa autorização",
+            "notes": "local sagrado — autorização"
+          },
+          {
+            "id": "bkygothlx2x",
+            "name": "Túmulo do Rei Huambo Calunga",
+            "period": "tarde",
+            "status": "precisa autorização",
+            "notes": "local sagrado — autorização"
+          }
+        ],
+        "crew": [],
+        "callTime": "07:00",
+        "wrapTime": "18:00",
+        "date": "",
+        "sunrise": "",
+        "sunset": "",
+        "weather": "",
+        "planB": "",
+        "meetingPoint": "",
+        "mapUrl": "",
+        "emergency": "",
+        "notes": ""
+      },
+      {
+        "id": "ah1zwvclx2x",
+        "label": "Dia 6",
+        "theme": "Caála / Cuima / outros pontos prioritários",
+        "locations": [
+          {
+            "id": "1t48ef7lx2x",
+            "name": "Caála",
+            "period": "manhã",
+            "status": "pendente",
+            "notes": ""
+          },
+          {
+            "id": "nqqcde3lx2x",
+            "name": "Cuima / Lago do Cuima",
+            "period": "tarde",
+            "status": "pendente",
+            "notes": ""
+          },
+          {
+            "id": "onr8v98lx2x",
+            "name": "Rio Kuiva",
+            "period": "tarde",
+            "status": "pendente",
+            "notes": ""
+          }
+        ],
+        "crew": [],
+        "callTime": "07:00",
+        "wrapTime": "18:00",
+        "date": "",
+        "sunrise": "",
+        "sunset": "",
+        "weather": "",
+        "planB": "",
+        "meetingPoint": "",
+        "mapUrl": "",
+        "emergency": "",
+        "notes": ""
+      },
+      {
+        "id": "r8t2mndlx2x",
+        "label": "Dia 7",
+        "theme": "Captações complementares + hotel + imagens de segurança",
+        "locations": [
+          {
+            "id": "evh4bpqlx2x",
+            "name": "Hotel Miragem — complementos",
+            "period": "manhã",
+            "status": "confirmado",
+            "notes": ""
+          },
+          {
+            "id": "9h315mglx2x",
+            "name": "Imagens de segurança / reforço",
+            "period": "tarde",
+            "status": "confirmado",
+            "notes": ""
+          }
+        ],
+        "crew": [],
+        "callTime": "07:00",
+        "wrapTime": "18:00",
+        "date": "",
+        "sunrise": "",
+        "sunset": "",
+        "weather": "",
+        "planB": "",
+        "meetingPoint": "",
+        "mapUrl": "",
+        "emergency": "",
+        "notes": ""
+      }
+    ],
+    "finance": {
+      "stages": [
+        {
+          "id": "4744bxklx2x",
+          "name": "Pré-produção",
+          "value": 200000
+        },
+        {
+          "id": "clohk9elx2x",
+          "name": "Produção no Hotel Miragem",
+          "value": 250000
+        },
+        {
+          "id": "gzd8atilx2x",
+          "name": "Huambo e cultura",
+          "value": 300000
+        },
+        {
+          "id": "sdsorrglx2x",
+          "name": "Natureza e destinos turísticos",
+          "value": 400000
+        },
+        {
+          "id": "aabgaqrlx2x",
+          "name": "História e património",
+          "value": 300000
+        },
+        {
+          "id": "dmk7ucelx2x",
+          "name": "Fotografia",
+          "value": 200000
+        },
+        {
+          "id": "9epp6w2lx2x",
+          "name": "Captação de vídeo",
+          "value": 250000
+        },
+        {
+          "id": "36xyggalx2x",
+          "name": "Pós-produção e organização",
+          "value": 100000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pt47hsylx2x",
+          "label": "40% — início da pré-produção",
+          "value": 800000,
+          "paid": false,
+          "due": ""
+        },
+        {
+          "id": "8ho4j2flx2x",
+          "label": "30% — início da produção",
+          "value": 600000,
+          "paid": false,
+          "due": ""
+        },
+        {
+          "id": "0aok4eglx2x",
+          "label": "30% — conclusão da pós-produção",
+          "value": 600000,
+          "paid": false,
+          "due": ""
+        }
+      ],
+      "expenses": []
+    },
+    "deliverables": {
+      "categories": [
+        {
+          "id": "l25mybclx2x",
+          "name": "Fotografia",
+          "items": [
+            {
+              "id": "krh2098lx2x",
+              "label": "Hotel Miragem",
+              "done": false
+            },
+            {
+              "id": "1be3328lx2x",
+              "label": "Paisagens",
+              "done": false
+            },
+            {
+              "id": "cycetowlx2x",
+              "label": "Património",
+              "done": false
+            },
+            {
+              "id": "2yku1f2lx2x",
+              "label": "Cultura",
+              "done": false
+            },
+            {
+              "id": "gvau5p6lx2x",
+              "label": "Pessoas",
+              "done": false
+            },
+            {
+              "id": "3k98kmjlx2x",
+              "label": "Gastronomia",
+              "done": false
+            },
+            {
+              "id": "za1mdkhlx2x",
+              "label": "Natureza",
+              "done": false
+            },
+            {
+              "id": "jjw3kvrlx2x",
+              "label": "Cidade",
+              "done": false
+            },
+            {
+              "id": "znejhwwlx2x",
+              "label": "Experiências",
+              "done": false
+            }
+          ]
+        },
+        {
+          "id": "qxz87a5lx2x",
+          "name": "Vídeo",
+          "items": [
+            {
+              "id": "enfm74ilx2x",
+              "label": "Website",
+              "done": false
+            },
+            {
+              "id": "v7z8rcelx2x",
+              "label": "Redes sociais",
+              "done": false
+            },
+            {
+              "id": "du3e1lclx2x",
+              "label": "Campanhas publicitárias",
+              "done": false
+            },
+            {
+              "id": "5ijlxtylx2x",
+              "label": "Vídeos institucionais",
+              "done": false
+            },
+            {
+              "id": "0w7iqe0lx2x",
+              "label": "Apresentação do destino",
+              "done": false
+            },
+            {
+              "id": "ydmmfy8lx2x",
+              "label": "Conteúdos promocionais",
+              "done": false
+            }
+          ]
+        }
+      ]
+    },
+    "consents": [
+      {
+        "id": "t2jom4dlx2x",
+        "subject": "Pessoas identificáveis — mercados e vida urbana",
+        "type": "pessoa",
+        "status": "pendente",
+        "notes": ""
+      },
+      {
+        "id": "v7wn0wdlx2x",
+        "subject": "Bailundo / Ombala yo Mbalundu",
+        "type": "local sagrado",
+        "status": "pendente",
+        "notes": ""
+      },
+      {
+        "id": "m2sc9telx2x",
+        "subject": "Túmulo do Rei Huambo Calunga",
+        "type": "local sagrado",
+        "status": "pendente",
+        "notes": ""
+      },
+      {
+        "id": "w68cr0plx2x",
+        "subject": "Halavala / Pedras de Candumbo",
+        "type": "local sagrado",
+        "status": "pendente",
+        "notes": ""
+      }
+    ],
+    "equipment": [
+      {
+        "id": "bp46la5lx2x",
+        "item": "Câmeras",
+        "providedBy": "Contratante / Hotel Miragem",
+        "status": "pendente"
+      },
+      {
+        "id": "g8pfu3clx2x",
+        "item": "Lentes",
+        "providedBy": "Contratante / Hotel Miragem",
+        "status": "pendente"
+      },
+      {
+        "id": "55q2hcvlx2x",
+        "item": "Drones",
+        "providedBy": "Contratante / Hotel Miragem",
+        "status": "pendente"
+      },
+      {
+        "id": "zs30reulx2x",
+        "item": "Gimbals",
+        "providedBy": "Contratante / Hotel Miragem",
+        "status": "pendente"
+      },
+      {
+        "id": "4od7wj3lx2x",
+        "item": "Iluminação",
+        "providedBy": "Contratante / Hotel Miragem",
+        "status": "pendente"
+      },
+      {
+        "id": "up689m2lx2x",
+        "item": "Gravadores",
+        "providedBy": "Contratante / Hotel Miragem",
+        "status": "pendente"
+      },
+      {
+        "id": "bjsupr9lx2x",
+        "item": "Microfones",
+        "providedBy": "Contratante / Hotel Miragem",
+        "status": "pendente"
+      },
+      {
+        "id": "q4ffg8dlx2x",
+        "item": "Computadores",
+        "providedBy": "Contratante / Hotel Miragem",
+        "status": "pendente"
+      },
+      {
+        "id": "s2i8x62lx2x",
+        "item": "Cartões de memória",
+        "providedBy": "Contratante / Hotel Miragem",
+        "status": "pendente"
+      },
+      {
+        "id": "5n5imeolx2x",
+        "item": "Discos de armazenamento",
+        "providedBy": "Contratante / Hotel Miragem",
+        "status": "pendente"
+      }
+    ],
+    "shots": [],
+    "contacts": [],
+    "tasks": [
+      {
+        "id": "0m2x26tlx2y",
+        "title": "Fechar o contrato e receber a 1.ª tranche (40%)",
+        "phase": "pré-produção",
+        "status": "em curso",
+        "due": "",
+        "owner": ""
+      },
+      {
+        "id": "4h7gojglx2y",
+        "title": "Confirmar datas de captação com o Hotel Miragem",
+        "phase": "pré-produção",
+        "status": "em espera",
+        "due": "",
+        "owner": ""
+      },
+      {
+        "id": "7jq6fdwlx2y",
+        "title": "Reconhecimento de locais (Huambo, Caála, Cuima)",
+        "phase": "pré-produção",
+        "status": "em espera",
+        "due": "",
+        "owner": ""
+      },
+      {
+        "id": "ldd0586lx2y",
+        "title": "Pedir autorização — Ombala yo Mbalundu e Túmulo do Rei Huambo Calunga",
+        "phase": "pré-produção",
+        "status": "em espera",
+        "due": "",
+        "owner": ""
+      },
+      {
+        "id": "7w7qkd5lx2y",
+        "title": "Verificar estrada e clima — Morro do Moco e nascente do Cubango",
+        "phase": "pré-produção",
+        "status": "em espera",
+        "due": "",
+        "owner": ""
+      },
+      {
+        "id": "a6xvck3lx2y",
+        "title": "Preparar termos de cedência de imagem para pessoas identificáveis",
+        "phase": "pré-produção",
+        "status": "em espera",
+        "due": "",
+        "owner": ""
+      },
+      {
+        "id": "ovs1jarlx2y",
+        "title": "Verificar autorização para voo de drone",
+        "phase": "pré-produção",
+        "status": "em espera",
+        "due": "",
+        "owner": ""
+      },
+      {
+        "id": "22ngigjlx2y",
+        "title": "Testar e carregar todo o equipamento (baterias, cartões, discos)",
+        "phase": "pré-produção",
+        "status": "em espera",
+        "due": "",
+        "owner": ""
+      },
+      {
+        "id": "vpp6j23lx2y",
+        "title": "Backup diário dos cartões durante a produção",
+        "phase": "produção",
+        "status": "em espera",
+        "due": "",
+        "owner": ""
+      },
+      {
+        "id": "t8oo5ynlx2y",
+        "title": "Selecção e organização de fotografias",
+        "phase": "pós-produção",
+        "status": "em espera",
+        "due": "",
+        "owner": ""
+      },
+      {
+        "id": "zax9417lx2y",
+        "title": "Edição dos vídeos (website, redes sociais, institucional)",
+        "phase": "pós-produção",
+        "status": "em espera",
+        "due": "",
+        "owner": ""
+      },
+      {
+        "id": "irzw9gnlx2y",
+        "title": "Entrega final e 3.ª tranche (30%)",
+        "phase": "pós-produção",
+        "status": "em espera",
+        "due": "",
+        "owner": ""
+      }
+    ],
+    "phases": [
+      {
+        "id": "3ibjxdclx2y",
+        "name": "Pré-produção",
+        "start": "",
+        "end": ""
+      },
+      {
+        "id": "256s54zlx2y",
+        "name": "Produção",
+        "start": "",
+        "end": ""
+      },
+      {
+        "id": "2yqufoclx2y",
+        "name": "Pós-produção",
+        "start": "",
+        "end": ""
+      }
+    ],
+    "references": [],
+    "notes": ""
+  }
+}

@@ -485,23 +485,6 @@
   function addDays(s,n){ const d=parseDate(s); if(!d) return ''; d.setDate(d.getDate()+n); return isoOf(d); }
 
   /* ---------- dados ---------- */
-  function defaultTasks(){
-    const t=(title,phase,status)=>({id:uid(),title:title,phase:phase,status:status||'em espera',due:'',owner:''});
-    return [
-      t('Fechar o contrato e receber a 1.ª tranche (40%)','pré-produção','em curso'),
-      t('Confirmar datas de captação com o Hotel Miragem','pré-produção'),
-      t('Reconhecimento de locais (Huambo, Caála, Cuima)','pré-produção'),
-      t('Pedir autorização — Ombala yo Mbalundu e Túmulo do Rei Huambo Calunga','pré-produção'),
-      t('Verificar estrada e clima — Morro do Moco e nascente do Cubango','pré-produção'),
-      t('Preparar termos de cedência de imagem para pessoas identificáveis','pré-produção'),
-      t('Verificar autorização para voo de drone','pré-produção'),
-      t('Testar e carregar todo o equipamento (baterias, cartões, discos)','pré-produção'),
-      t('Backup diário dos cartões durante a produção','produção'),
-      t('Selecção e organização de fotografias','pós-produção'),
-      t('Edição dos vídeos (website, redes sociais, institucional)','pós-produção'),
-      t('Entrega final e 3.ª tranche (30%)','pós-produção')
-    ];
-  }
   const defaultPhases = () => TASK_PHASES.map(n=>({id:uid(), name:n.charAt(0).toUpperCase()+n.slice(1), start:'', end:''}));
 
   function ensureProject(p){
@@ -526,7 +509,7 @@
     p.equipment = p.equipment || [];
     p.shots = p.shots || [];
     p.contacts = p.contacts || [];
-    if (!p.tasks) p.tasks = (p.id==='hotel-miragem') ? defaultTasks() : [];
+    p.tasks = p.tasks || [];
     p.phases = p.phases || defaultPhases();
     p.references = p.references || [];
     if (p.notes===undefined) p.notes='';
@@ -542,90 +525,14 @@
     return s;
   }
   function seedState(){
-    return normalizeState({
-      activeProjectId: "hotel-miragem",
-      activeTab: "resumo",
-      projects: [{
-        id: "hotel-miragem",
-        name: "Hotel Miragem × Huambo",
-        client: "Hotel Miragem",
-        location: "Huambo e província do Huambo",
-        period: "Dezembro de 2026",
-        status: "negociação",
-        currency: "Kz",
-        days: [
-          { id: uid(), label: "Dia 1", theme: "Hotel + Huambo cidade", locations: [
-            { id: uid(), name: "Hotel Miragem", period: "dia todo", status: "confirmado", notes: "" },
-            { id: uid(), name: "Praça Agostinho Neto", period: "manhã", status: "confirmado", notes: "" },
-            { id: uid(), name: "Jardim da Cultura", period: "manhã", status: "confirmado", notes: "" },
-            { id: uid(), name: "Sé Catedral", period: "tarde", status: "confirmado", notes: "" },
-            { id: uid(), name: "Cidade Alta / vida urbana", period: "tarde", status: "confirmado", notes: "" }
-          ]},
-          { id: uid(), label: "Dia 2", theme: "CFB + mercados + gastronomia + pessoas", locations: [
-            { id: uid(), name: "Estação do CFB", period: "manhã", status: "confirmado", notes: "" },
-            { id: uid(), name: "Mercados", period: "manhã", status: "confirmado", notes: "" },
-            { id: uid(), name: "Gastronomia local", period: "tarde", status: "confirmado", notes: "" },
-            { id: uid(), name: "Artesãos e vendedores", period: "tarde", status: "pendente", notes: "confirmar contactos" }
-          ]},
-          { id: uid(), label: "Dia 3", theme: "Morro do Moco", locations: [
-            { id: uid(), name: "Morro / Serra do Moco", period: "dia todo", status: "depende do clima", notes: "condições de estrada e clima" }
-          ]},
-          { id: uid(), label: "Dia 4", theme: "Nascente do Cubango/Okavango + natureza", locations: [
-            { id: uid(), name: "Nascente do Rio Cubango/Okavango", period: "manhã", status: "depende do clima", notes: "" },
-            { id: uid(), name: "Natureza envolvente", period: "tarde", status: "depende do clima", notes: "" }
-          ]},
-          { id: uid(), label: "Dia 5", theme: "Bailundo + património cultural", locations: [
-            { id: uid(), name: "Bailundo / Ombala yo Mbalundu", period: "dia todo", status: "precisa autorização", notes: "local sagrado — autorização" },
-            { id: uid(), name: "Túmulo do Rei Huambo Calunga", period: "tarde", status: "precisa autorização", notes: "local sagrado — autorização" }
-          ]},
-          { id: uid(), label: "Dia 6", theme: "Caála / Cuima / outros pontos prioritários", locations: [
-            { id: uid(), name: "Caála", period: "manhã", status: "pendente", notes: "" },
-            { id: uid(), name: "Cuima / Lago do Cuima", period: "tarde", status: "pendente", notes: "" },
-            { id: uid(), name: "Rio Kuiva", period: "tarde", status: "pendente", notes: "" }
-          ]},
-          { id: uid(), label: "Dia 7", theme: "Captações complementares + hotel + imagens de segurança", locations: [
-            { id: uid(), name: "Hotel Miragem — complementos", period: "manhã", status: "confirmado", notes: "" },
-            { id: uid(), name: "Imagens de segurança / reforço", period: "tarde", status: "confirmado", notes: "" }
-          ]}
-        ],
-        finance: {
-          stages: [
-            { id: uid(), name: "Pré-produção", value: 200000 },
-            { id: uid(), name: "Produção no Hotel Miragem", value: 250000 },
-            { id: uid(), name: "Huambo e cultura", value: 300000 },
-            { id: uid(), name: "Natureza e destinos turísticos", value: 400000 },
-            { id: uid(), name: "História e património", value: 300000 },
-            { id: uid(), name: "Fotografia", value: 200000 },
-            { id: uid(), name: "Captação de vídeo", value: 250000 },
-            { id: uid(), name: "Pós-produção e organização", value: 100000 }
-          ],
-          payments: [
-            { id: uid(), label: "40% — início da pré-produção", value: 800000, paid: false },
-            { id: uid(), label: "30% — início da produção", value: 600000, paid: false },
-            { id: uid(), label: "30% — conclusão da pós-produção", value: 600000, paid: false }
-          ],
-          expenses: []
-        },
-        deliverables: { categories: [
-          { id: uid(), name: "Fotografia", items: ["Hotel Miragem","Paisagens","Património","Cultura","Pessoas","Gastronomia","Natureza","Cidade","Experiências"].map(n=>({ id: uid(), label:n, done:false })) },
-          { id: uid(), name: "Vídeo", items: ["Website","Redes sociais","Campanhas publicitárias","Vídeos institucionais","Apresentação do destino","Conteúdos promocionais"].map(n=>({ id: uid(), label:n, done:false })) }
-        ]},
-        consents: [
-          { id: uid(), subject: "Pessoas identificáveis — mercados e vida urbana", type: "pessoa", status: "pendente", notes: "" },
-          { id: uid(), subject: "Bailundo / Ombala yo Mbalundu", type: "local sagrado", status: "pendente", notes: "" },
-          { id: uid(), subject: "Túmulo do Rei Huambo Calunga", type: "local sagrado", status: "pendente", notes: "" },
-          { id: uid(), subject: "Halavala / Pedras de Candumbo", type: "local sagrado", status: "pendente", notes: "" }
-        ],
-        equipment: ["Câmeras","Lentes","Drones","Gimbals","Iluminação","Gravadores","Microfones","Computadores","Cartões de memória","Discos de armazenamento"].map(n=>({ id: uid(), item:n, providedBy:"Contratante / Hotel Miragem", status:"pendente" }))
-      }]
-    });
+    return normalizeState({ activeProjectId:'', activeTab:'resumo', projects:[] });
   }
   function loadState(){
     try{
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw){
         const parsed = JSON.parse(raw);
-        if (parsed && parsed.projects && parsed.projects.length) return normalizeState(parsed);
+        if (parsed && Array.isArray(parsed.projects)) return normalizeState(parsed);
       }
     }catch(e){ /* storage indisponível ou corrompido */ }
     return seedState();
@@ -847,7 +754,7 @@
     const dark = effectiveTheme()==='dark';
     return `<aside class="side" aria-label="Navegação">
       <div class="brand"><span class="logo"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="10" width="18" height="10" rx="1.5" fill="#14171A"/><path d="M3 10l1.6-5 17 3.2-.6 1.8z" fill="#14171A"/><path d="M7 5.9l3 5M12 6.9l3 4.5M17 7.9l2.5 3.3" stroke="#fff" stroke-width="1.8"/></svg></span>Painel de produção</div>
-      <div class="proj-sel"><label class="sr" for="proj-select">Projecto</label><select id="proj-select" data-action="pick-project">${projOpts}</select>${ic('chev',16)}</div>
+      ${state.projects.length?`<div class="proj-sel"><label class="sr" for="proj-select">Projecto</label><select id="proj-select" data-action="pick-project">${projOpts}</select>${ic('chev',16)}</div>`:''}
       ${newForm}
       <button class="search-btn" data-action="open-palette">${ic('search',16)}Procurar ou ir para<kbd>Ctrl K</kbd></button>
       ${groups}
@@ -938,7 +845,7 @@
         <div class="field"><label for="f-cur">Moeda</label><input id="f-cur" class="in" type="text" value="${esc(p.currency)}" data-pf="currency"></div>
         <div class="field wide"><label for="f-notes">Notas do projecto</label><textarea id="f-notes" class="in" data-pf="notes" placeholder="Briefing, decisões, contactos importantes">${esc(p.notes)}</textarea></div>
       </div>
-      <div style="margin-top:12px"><button class="btn danger sm" data-action="delete-project">${ic('x',14)}Remover projecto</button></div>` : '';
+      <div style="margin-top:12px"><button class="btn sm" data-action="export-project">${ic('download',14)}Exportar este projecto</button> <button class="btn danger sm" data-action="delete-project">${ic('x',14)}Remover projecto</button></div>` : '';
     return `${note}<div class="hero">${slate}${ready}</div>${metrics}${flagHtml}${days}
       <h2 class="sub">Detalhes do projecto<button class="btn sm quiet" data-action="toggle-details">${state.ui.showDetails?'Esconder':'Editar'}</button></h2>${details}`;
   }
@@ -1048,7 +955,7 @@
         ${F('Nascer do sol','sunrise','time')}
         ${F('Pôr do sol','sunset','time')}
         ${F('Meteorologia','weather','text','Ex.: sol, 28 °C, 20% de chuva')}
-        ${F('Ponto de encontro','meetingPoint','text','Ex.: recepção do Hotel Miragem',true)}
+        ${F('Ponto de encontro','meetingPoint','text','Ex.: recepção do hotel',true)}
         ${F('Link do mapa','mapUrl','text','Google Maps ou coordenadas',true)}
         ${F('Hospital e emergência','emergency','text','Nome, telefone e morada',true)}
         ${F('Plano B se o clima falhar','planB','text','O que filmar em alternativa',true)}
@@ -1324,7 +1231,7 @@
     const p=getProject();
     let main;
     if (!p){
-      main=`<div class="page-head"><h1>Sem projectos</h1></div>${empty('home','Crie o primeiro projecto','Use "Novo projecto" na barra lateral para começar o roteiro de produção.','')}`;
+      main=`<header class="page-head"><div><h1>Bem-vindo</h1><p>Ainda não tem projectos. Crie um do zero ou importe um ficheiro que já tenha.</p></div></header>${empty('camera','Comece o primeiro projecto','Crie um projecto para planear o roteiro, a folha de chamada, o orçamento e as entregas num só sítio.','<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px"><button class="btn primary" data-action="new-project">'+ic('plus',16)+'Criar projecto</button><button class="btn" data-action="import-data">'+ic('upload',16)+'Importar ficheiro</button></div>')}`;
     } else {
       const R={resumo:renderResumo,roteiro:renderRoteiro,planos:renderPlanos,chamada:renderChamada,calendario:renderCalendario,tarefas:renderTarefas,equipa:renderEquipa,financeiro:renderFinanceiro,entregaveis:renderEntregaveis,autorizacoes:renderAutorizacoes,equipamento:renderEquipamento,referencias:renderReferencias};
       main=renderPageHead(p)+R[state.activeTab](p);
@@ -1356,11 +1263,29 @@
     reader.onload=()=>{
       try{
         const parsed=JSON.parse(reader.result);
-        if (!parsed||!parsed.projects) throw new Error('formato inválido');
+        if (parsed && parsed.formato==='painel-producao-projecto' && parsed.projecto){
+          // ficheiro de um só projecto: acrescenta, não substitui os existentes
+          const np=ensureProject(parsed.projecto);
+          if (!np.name) np.name='Projecto importado';
+          if (state.projects.some(x=>x.id===np.id)) np.id=uid();
+          state.projects.push(np); state.activeProjectId=np.id; state.activeTab='resumo'; state.ui.menuOpen=false;
+          applyTheme(); renderApp(false); persistNow(); toast('Projecto "'+np.name+'" importado'); return;
+        }
+        if (!parsed||!Array.isArray(parsed.projects)) throw new Error('formato inválido');
+        if (state.projects.length && !confirm('Isto substitui TODOS os projectos actuais pela cópia de segurança. Continuar?')) return;
         state=normalizeState(parsed); applyTheme(); renderApp(false); persistNow(); toast('Cópia importada');
       }catch(e){ toast('Não foi possível importar este ficheiro: '+e.message); }
     };
     reader.readAsText(file);
+  }
+  function doExportProject(p){
+    const out={formato:'painel-producao-projecto',versao:1,exportadoEm:todayISO(),projecto:p};
+    const blob=new Blob([JSON.stringify(out,null,2)],{type:'application/json'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url; a.download='projecto-'+(p.name||'sem-nome').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'.json';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
   }
 
   /* ---------- acções ---------- */
@@ -1392,6 +1317,7 @@
     if (action==='toggle-theme'){ state.theme=effectiveTheme()==='dark'?'light':'dark'; applyTheme(); return {}; }
     if (action==='export-data'){ doExport(); state.ui.lastExport=todayISO(); toast('Cópia exportada'); return {}; }
     if (action==='import-data'){ document.getElementById('import-input').click(); return {skip:true}; }
+    if (action==='export-project'){ if(p){ doExportProject(p); toast('Projecto exportado'); } return {skip:true}; }
     if (action==='new-project'){ state.ui.addingProject=true; state.ui.menuOpen=true; return {focus:'#new-proj-name'}; }
     if (action==='cancel-new-project'){ state.ui.addingProject=false; return {}; }
     if (action==='confirm-new-project'){
