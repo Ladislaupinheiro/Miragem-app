@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>Painel de Produção</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#14171A">
+<meta name="description" content="Gestão de produção audiovisual: roteiro, folha de chamada, orçamento e entregas.">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Produção">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <style>
   /* ============ Tokens ============
      Direcção: bancada de realização. Ink de câmara, fita gaffer, luz de gravação (tally).
@@ -343,6 +352,14 @@
   /* ============ Toasts, confetti, paleta ============ */
   #toasts{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);display:flex;flex-direction:column;gap:8px;align-items:center;z-index:100;pointer-events:none;width:max-content;max-width:92vw;}
   .toast{pointer-events:auto;display:flex;align-items:center;gap:14px;padding:10px 12px 10px 16px;background:var(--ink);color:var(--bg);border-radius:var(--r-m);box-shadow:0 8px 28px rgba(0,0,0,.28);font-size:14px;animation:toast-in .18s ease-out;}
+  #update-card{position:fixed;right:20px;bottom:20px;z-index:110;width:min(360px,calc(100vw - 32px));background:var(--surface);color:var(--ink);border:1px solid var(--line-2,var(--line));border-radius:var(--r-l,14px);box-shadow:0 14px 40px rgba(0,0,0,.28);padding:16px;display:none;animation:toast-in .2s ease-out;}
+  #update-card.show{display:block;}
+  #update-card .uc-top{display:flex;gap:12px;align-items:flex-start;}
+  #update-card .uc-ico{flex:none;width:34px;height:34px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center;}
+  #update-card b{display:block;font-size:15px;margin-bottom:2px;}
+  #update-card p{margin:0;font-size:13.5px;color:var(--ink-3);line-height:1.45;}
+  #update-card .uc-act{display:flex;gap:8px;justify-content:flex-end;margin-top:14px;}
+  @media (max-width:860px){#update-card{left:16px;right:16px;bottom:16px;width:auto;}}
   .toast.win{background:var(--ok);color:#fff;font-weight:600;}
   .toast button{height:30px;padding:0 10px;border-radius:var(--r-s);border:1px solid currentColor;background:transparent;color:inherit;font:600 13px var(--font);}
   @keyframes toast-in{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
@@ -538,6 +555,10 @@
     return seedState();
   }
 
+  let deferredInstall = null;
+  let updateReady = null;   // service worker à espera de ser activado
+  let swReg = null;
+  let applying = false;     // o utilizador pediu para instalar a actualização
   let state = loadState();
   let saveTimer = null;
   let firstRender = true;
@@ -761,6 +782,8 @@
       <div class="side-foot">
         <button class="btn" data-action="export-data">${ic('download',16)}Exportar cópia</button>
         <button class="btn" data-action="import-data">${ic('upload',16)}Importar cópia</button>
+        ${updateReady?`<button class="btn" data-action="apply-update" style="border-color:var(--ok);color:var(--ok)">${ic('spark',16)}Actualizar app</button>`:''}
+        ${deferredInstall?`<button class="btn" data-action="install-app">${ic('download',16)}Instalar app</button>`:''}
         <button class="btn" data-action="toggle-theme">${ic(dark?'sun':'moon',16)}${dark?'Tema claro':'Tema escuro'}</button>
         <div class="save-chip" id="save-chip" data-st="saved"><i></i><span>Guardado</span></div>
       </div>
@@ -1317,6 +1340,9 @@
     if (action==='toggle-theme'){ state.theme=effectiveTheme()==='dark'?'light':'dark'; applyTheme(); return {}; }
     if (action==='export-data'){ doExport(); state.ui.lastExport=todayISO(); toast('Cópia exportada'); return {}; }
     if (action==='import-data'){ document.getElementById('import-input').click(); return {skip:true}; }
+    if (action==='apply-update'){ applyUpdate(); return {skip:true}; }
+    if (action==='check-update'){ checkUpdate(true); return {skip:true}; }
+    if (action==='install-app'){ if(deferredInstall){ const d=deferredInstall; d.prompt(); d.userChoice.finally(()=>{ deferredInstall=null; renderApp(); }); } return {skip:true}; }
     if (action==='export-project'){ if(p){ doExportProject(p); toast('Projecto exportado'); } return {skip:true}; }
     if (action==='new-project'){ state.ui.addingProject=true; state.ui.menuOpen=true; return {focus:'#new-proj-name'}; }
     if (action==='cancel-new-project'){ state.ui.addingProject=false; return {}; }
@@ -1515,6 +1541,7 @@
     }
     state.projects.filter(x=>!p||x.id!==p.id).forEach(x=>c.push({label:'Abrir projecto '+x.name, hint:'Projectos', icon:'home', run:()=>run('select-project',go1({'data-project':x.id}))}));
     c.push({label:'Novo projecto', hint:'Criar', icon:'plus', run:()=>run('new-project',go1({}))});
+    c.push({label:'Procurar actualizações da app', hint:'App', icon:'spark', run:()=>run('check-update',go1({}))});
     c.push({label:'Exportar cópia de segurança', hint:'Dados', icon:'download', run:()=>run('export-data',go1({}))});
     c.push({label:effectiveTheme()==='dark'?'Mudar para tema claro':'Mudar para tema escuro', hint:'Aspecto', icon:effectiveTheme()==='dark'?'sun':'moon', run:()=>run('toggle-theme',go1({}))});
     return c;
@@ -1549,6 +1576,61 @@
     }
     if (e.key==='Escape' && state.ui.menuOpen){ state.ui.menuOpen=false; renderApp(); }
   });
+
+  /* ---------- PWA ---------- */
+  window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredInstall=e; renderApp(); });
+  window.addEventListener('appinstalled',()=>{ deferredInstall=null; renderApp(); toast('App instalada'); });
+  /* ---------- actualizações da app ---------- */
+  function updateCard(){
+    let el=document.getElementById('update-card');
+    if (!el){
+      el=document.createElement('div'); el.id='update-card'; el.setAttribute('role','alertdialog'); el.setAttribute('aria-labelledby','uc-t');
+      el.innerHTML='<div class="uc-top"><span class="uc-ico">'+ic('spark',18)+'</span><div><b id="uc-t">Nova versão disponível</b><p>Já descarregámos melhorias. Os seus projectos ficam guardados. A app recarrega ao instalar.</p></div></div><div class="uc-act"><button class="btn" data-uc="later">Mais tarde</button><button class="btn primary" data-uc="now">Instalar agora</button></div>';
+      document.body.appendChild(el);
+      el.addEventListener('click',e=>{ const b=e.target.closest('[data-uc]'); if(!b) return; if (b.getAttribute('data-uc')==='now') applyUpdate(); else el.classList.remove('show'); });
+    }
+    return el;
+  }
+  function offerUpdate(worker){
+    updateReady=worker; renderApp();
+    updateCard().classList.add('show');
+  }
+  function applyUpdate(){
+    if (!updateReady) return;
+    try{ persistNow(); }catch(e){}
+    applying=true;
+    updateReady.postMessage('SKIP_WAITING');   // o 'controllerchange' abaixo recarrega a página
+    toast('A instalar a nova versão…');
+  }
+  function checkUpdate(manual){
+    if (!swReg){ if (manual) toast('Actualizações só funcionam na app publicada (HTTPS)'); return; }
+    if (updateReady){ updateCard().classList.add('show'); return; }
+    swReg.update().then(()=>{ if (manual && !swReg.installing && !swReg.waiting) toast('Já tem a versão mais recente'); }).catch(()=>{ if (manual) toast('Sem ligação para verificar actualizações'); });
+  }
+  if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){
+    let reloading=false;
+    navigator.serviceWorker.addEventListener('controllerchange',()=>{
+      if (!applying || reloading) return;   // só recarrega quando o utilizador aceitou
+      reloading=true; try{ persistNow(); }catch(e){} location.reload();
+    });
+    window.addEventListener('load',()=>{
+      navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(reg=>{
+        swReg=reg;
+        if (reg.waiting && navigator.serviceWorker.controller) offerUpdate(reg.waiting);
+        reg.addEventListener('updatefound',()=>{
+          const w=reg.installing; if(!w) return;
+          w.addEventListener('statechange',()=>{ if (w.state==='installed' && navigator.serviceWorker.controller) offerUpdate(w); });
+        });
+        // procura de novo ao voltar à app e de hora a hora
+        document.addEventListener('visibilitychange',()=>{ if (document.visibilityState==='visible') reg.update().catch(()=>{}); });
+        setInterval(()=>reg.update().catch(()=>{}), 60*60*1000);
+      }).catch(()=>{});
+    });
+  }
+  // pede ao browser para não apagar os dados guardados quando o espaço é pouco
+  try{ if (navigator.storage && navigator.storage.persist) navigator.storage.persist(); }catch(e){}
+  // atalhos do manifesto: ?tab=...
+  try{ const t=new URLSearchParams(location.search).get('tab'); if (t && SECTIONS[t]) state.activeTab=t; }catch(e){}
 
   applyTheme();
   renderApp();
