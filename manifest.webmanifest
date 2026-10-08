@@ -1,7 +1,7 @@
 {
-  "name": "Painel de Produção",
-  "short_name": "Produção",
-  "description": "Gestão de produção audiovisual: roteiro, folha de chamada, orçamento e entregas.",
+  "name": "Miragem",
+  "short_name": "Miragem",
+  "description": "Miragem — gestão de produção audiovisual: roteiro, folha de chamada, orçamento e entregas.",
   "lang": "pt-AO",
   "id": "./",
   "start_url": "./index.html",

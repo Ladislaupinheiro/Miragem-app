@@ -1,7 +1,7 @@
-/* Service worker — Painel de Produção.
+/* Service worker — Miragem.
    PARA PUBLICAR UMA ACTUALIZAÇÃO: altere o ficheiro (index.html, etc.) e suba VERSION (painel-v2, v3…).
    Os utilizadores recebem um aviso e escolhem quando instalar. */
-const VERSION = 'painel-v1';
+const VERSION = 'miragem-v1';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-512.png', './icons/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {

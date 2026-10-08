@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<title>Painel de Produção</title>
+<title>Miragem</title>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#14171A">
-<meta name="description" content="Gestão de produção audiovisual: roteiro, folha de chamada, orçamento e entregas.">
+<meta name="description" content="Miragem — gestão de produção audiovisual: roteiro, folha de chamada, orçamento e entregas.">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Produção">
+<meta name="apple-mobile-web-app-title" content="Miragem">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -302,6 +302,25 @@
   .dot{display:inline-block;width:10px;height:10px;border-radius:50%;}
   @media (max-width:760px){.cal-cell{min-height:62px;font-size:10.5px;padding:2px;}.ev{padding:0 3px;font-size:10.5px;}}
 
+  /* ============ Papéis e guia ============ */
+  .mcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-m);margin-bottom:16px;overflow:hidden;}
+  .mhead{display:grid;grid-template-columns:minmax(120px,1fr) minmax(160px,1.6fr) 210px;gap:8px;padding:12px 10px 4px;}
+  .mhead .nm{font-weight:650;font-size:16px;}
+  .mfoot{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:8px 10px;border-top:1px solid var(--line);background:var(--surface-2);}
+  .mfoot .sp{flex:1;}
+  .load{font-size:12.5px;color:var(--ink-3);}
+  .guide{max-width:760px;}
+  .guide p,.guide li,.guide dd{line-height:1.6;color:var(--ink-2);}
+  .gbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-m);padding:16px 18px;margin-bottom:12px;}
+  .gbox h3{font-size:14.5px;}
+  .gbox ul{margin:8px 0 0;padding-left:20px;}
+  .gbox li{margin:4px 0;}
+  .gbox dt{font-weight:650;margin-top:12px;}
+  .gbox dt:first-child{margin-top:0;}
+  .gbox dd{margin:2px 0 0;}
+  .glinks{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+  @media (max-width:760px){.mhead{grid-template-columns:1fr;}}
+
   /* ============ Tarefas ============ */
   .chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
   .chip{border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2);height:32px;padding:0 13px;border-radius:16px;font:500 13px var(--font);}
@@ -352,6 +371,32 @@
   /* ============ Toasts, confetti, paleta ============ */
   #toasts{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);display:flex;flex-direction:column;gap:8px;align-items:center;z-index:100;pointer-events:none;width:max-content;max-width:92vw;}
   .toast{pointer-events:auto;display:flex;align-items:center;gap:14px;padding:10px 12px 10px 16px;background:var(--ink);color:var(--bg);border-radius:var(--r-m);box-shadow:0 8px 28px rgba(0,0,0,.28);font-size:14px;animation:toast-in .18s ease-out;}
+  #ob{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(10,12,14,.62);backdrop-filter:blur(3px);}
+  #ob.open{display:flex;}
+  .ob{width:min(520px,100%);max-height:calc(100vh - 32px);overflow:auto;background:var(--surface);color:var(--ink);border-radius:var(--r-l);box-shadow:0 24px 70px rgba(0,0,0,.4);animation:toast-in .22s ease-out;}
+  .ob-head{padding:24px 26px 0;}
+  .ob-dots{display:flex;gap:6px;margin-bottom:18px;}
+  .ob-dots i{height:4px;flex:1;border-radius:2px;background:var(--line-2);transition:background .2s;}
+  .ob-dots i.on{background:var(--tally);}
+  .ob h2{margin:0 0 6px;font-size:22px;letter-spacing:-.01em;}
+  .ob-sub{margin:0;color:var(--ink-3);font-size:14.5px;line-height:1.5;}
+  .ob-body{padding:18px 26px 4px;display:grid;gap:14px;}
+  .ob-body .field label{display:block;font-size:13px;font-weight:600;margin-bottom:5px;}
+  .ob-body .hint{margin:4px 0 0;font-size:12.5px;color:var(--ink-3);}
+  .ob-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .ob-list{margin:0;padding:0;list-style:none;display:grid;gap:10px;}
+  .ob-list li{display:flex;gap:10px;font-size:14px;line-height:1.45;}
+  .ob-list li svg{flex:none;margin-top:2px;color:var(--ok);}
+  .ob-chips{display:flex;gap:8px;flex-wrap:wrap;}
+  .ob-chips button{height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--line-2);background:transparent;color:var(--ink);font:600 13.5px var(--font);cursor:pointer;}
+  .ob-chips button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink);}
+  .ob-card{display:flex;gap:12px;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:var(--r-m);padding:12px 14px;font-size:14px;}
+  .ob-card small{display:block;color:var(--ink-3);font-size:12.5px;margin-top:2px;}
+  .ob-card .ok{color:var(--ok);font-weight:600;font-size:13px;white-space:nowrap;}
+  .ob-foot{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:18px 26px 22px;}
+  .ob-foot .grow{flex:1;}
+  .ob-skip{background:none;border:0;color:var(--ink-3);font:500 13.5px var(--font);cursor:pointer;padding:6px 2px;}
+  @media (max-width:520px){.ob-row2{grid-template-columns:1fr;} .ob-head,.ob-body,.ob-foot{padding-left:18px;padding-right:18px;}}
   #update-card{position:fixed;right:20px;bottom:20px;z-index:110;width:min(360px,calc(100vw - 32px));background:var(--surface);color:var(--ink);border:1px solid var(--line-2,var(--line));border-radius:var(--r-l,14px);box-shadow:0 14px 40px rgba(0,0,0,.28);padding:16px;display:none;animation:toast-in .2s ease-out;}
   #update-card.show{display:block;}
   #update-card .uc-top{display:flex;gap:12px;align-items:flex-start;}
@@ -400,6 +445,7 @@
 <div id="app"></div>
 <div id="print-area"></div>
 <div id="toasts" aria-live="polite"></div>
+<div id="ob" aria-hidden="true"></div>
 <div id="palette" aria-hidden="true">
   <div class="pal" role="dialog" aria-label="Procurar ou ir para">
     <input id="pal-input" type="text" placeholder="Procurar ou ir para…" autocomplete="off" spellcheck="false" aria-label="Procurar ou ir para">
@@ -448,7 +494,9 @@
     alert:'<path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17.5v.01"/>',
     grip:'<path d="M9 6h.01M15 6h.01M9 12h.01M15 12h.01M9 18h.01M15 18h.01"/>',
     link:'<path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/>',
-    chevR:'<path d="M9 6l6 6-6 6"/>'
+    chevR:'<path d="M9 6l6 6-6 6"/>',
+    book:'<path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2z"/><path d="M4 19V5M9 7h6"/>',
+    user:'<circle cx="12" cy="8" r="3.8"/><path d="M4.5 20c.6-4 3.7-6 7.5-6s6.9 2 7.5 6"/>'
   };
   const ic = (n,s) => `<svg class="ic" width="${s||18}" height="${s||18}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n]||''}</svg>`;
 
@@ -468,9 +516,13 @@
   const PROJECT_STATUS = ['negociação','confirmado','em produção','pós-produção','concluído'];
   const PHASE_COLORS = ['var(--sky)','var(--tally)','var(--ok)','var(--tape)'];
   const DOW = ['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'];
+  const KINDS = {exec:'Produtor executivo', real:'Realização, imagem e edição', prod:'Produção e logística', outro:'Outro'};
+  const DUTY_STATE = ['proposta','aceite','quero trocar'];
 
   const SECTIONS = {
     resumo:{title:'Visão geral', icon:'home'},
+    papeis:{title:'Papéis', icon:'user', desc:'Veja o que cabe a cada pessoa, diga o que aceita e o que prefere trocar.', cta:{label:'Adicionar pessoa', action:'add-item', attrs:{'data-c':'members'}}},
+    guia:{title:'Guia dos papéis', icon:'book', desc:'O essencial para desempenhar cada função, mesmo sem experiência em audiovisual.'},
     roteiro:{title:'Roteiro', icon:'map', desc:'Organize o que filmar em cada dia e acompanhe o estado de cada local.', cta:{label:'Adicionar dia', action:'add-day'}},
     planos:{title:'Shot list', icon:'camera', desc:'Planeie os planos de cada dia e marque-os à medida que os filma.'},
     calendario:{title:'Calendário', icon:'calendar', desc:'Veja captações, prazos e pagamentos no mesmo mês.'},
@@ -485,6 +537,7 @@
   };
   const GROUPS = [
     {name:null, tabs:['resumo']},
+    {name:'Papéis', tabs:['papeis','guia']},
     {name:'Planear', tabs:['roteiro','planos','calendario','tarefas']},
     {name:'Produzir', tabs:['chamada','equipa','equipamento','autorizacoes']},
     {name:'Entregar', tabs:['entregaveis','financeiro','referencias']}
@@ -504,14 +557,27 @@
   /* ---------- dados ---------- */
   const defaultPhases = () => TASK_PHASES.map(n=>({id:uid(), name:n.charAt(0).toUpperCase()+n.slice(1), start:'', end:''}));
 
+  const SET_DEF = {onboarded:false, userName:'', currency:'Kz', dialCode:'244', callTime:'07:00', wrapTime:'18:00'};
+  let CFG = Object.assign({}, SET_DEF);
+  function defMembers(){ return [
+    {id:'firmino', name:'Firmino', title:'Dono do projecto e do hotel', kind:'exec', focus:'Verbas, autorizações e portas abertas no Huambo', note:''},
+    {id:'ladislau', name:'Ladislau', title:'Realizador, fotografia e edição', kind:'real', focus:'Criação visual, captação e produto final', note:''},
+    {id:'aquiliano', name:'Aquiliano', title:'Produção e logística', kind:'prod', focus:'Cronograma, logística e custos do dia a dia', note:''}]; }
+  function defDuties(){
+    const D={
+      firmino:['Aprovar o orçamento e libertar as verbas para equipamento e despesas','Aprovar o roteiro e as prioridades dos entregáveis do hotel','Abrir portas no Huambo: autorizações para locais privados, públicos e sagrados','Orientar a equipa sobre pessoas, locais e histórias do Huambo','Tratar do seguro e da protecção do equipamento'],
+      ladislau:['Escrever o roteiro de captação e o conceito visual','Fotografar e filmar o hotel e o Huambo','Dirigir as pessoas e conduzir as entrevistas','Editar, tratar a cor e organizar os ficheiros finais'],
+      aquiliano:['Montar o cronograma dos dias de filmagem','Organizar transporte, alimentação, alojamento e fornecedores','Controlar as despesas e reportar ao Firmino','Visitar os locais antes e coordenar cada dia de filmagem']};
+    const out=[]; Object.keys(D).forEach(m=>D[m].forEach(l=>out.push({id:uid(), memberId:m, label:l, state:'proposta'}))); return out;
+  }
   function ensureProject(p){
-    p.currency = p.currency || 'Kz';
+    p.currency = p.currency || CFG.currency || 'Kz';
     p.days = p.days || [];
     p.days.forEach(d=>{
       d.locations = d.locations || [];
       d.crew = d.crew || [];
-      if (d.callTime===undefined) d.callTime='07:00';
-      if (d.wrapTime===undefined) d.wrapTime='18:00';
+      if (d.callTime===undefined) d.callTime=CFG.callTime;
+      if (d.wrapTime===undefined) d.wrapTime=CFG.wrapTime;
       ['date','sunrise','sunset','weather','planB','meetingPoint','mapUrl','emergency','notes'].forEach(k=>{ if(d[k]===undefined) d[k]=''; });
     });
     p.finance = p.finance || {};
@@ -529,12 +595,20 @@
     p.tasks = p.tasks || [];
     p.phases = p.phases || defaultPhases();
     p.references = p.references || [];
+    if (!p.members){ p.members=defMembers(); p.duties=defDuties(); }
+    p.duties = p.duties || [];
+    const nz = t => String(t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    p.tasks.forEach(x=>{ if(x.who===undefined){ x.who=''; const o=nz(x.owner); const m=o&&p.members.find(m=>{ const f=nz(m.name).split(' ')[0]; return f&&o.indexOf(f)>-1; }); if(m) x.who=m.id; } });
     if (p.notes===undefined) p.notes='';
     return p;
   }
   function normalizeState(s){
     s.theme = s.theme || 'auto';
-    s.ui = Object.assign({addingProject:false, calMonth:'', callDay:'', taskPhase:'todas', collapsed:{}, menuOpen:false, showDetails:false, lastExport:''}, s.ui||{});
+    const hadSettings = !!s.settings;
+    s.settings = Object.assign({}, SET_DEF, s.settings||{});
+    if (!hadSettings && s.projects.length) s.settings.onboarded = true;   // quem já tinha dados não vê a introdução
+    CFG = s.settings;
+    s.ui = Object.assign({addingProject:false, calMonth:'', callDay:'', taskPhase:'todas', collapsed:{}, menuOpen:false, showDetails:false, lastExport:'', guideKind:'inicio'}, s.ui||{});
     s.ui.addingProject=false; s.ui.menuOpen=false; s.ui.collapsed = s.ui.collapsed || {};
     s.projects.forEach(ensureProject);
     if (!SECTIONS[s.activeTab]) s.activeTab = 'resumo';
@@ -698,6 +772,7 @@
   function navBadge(p,tab){
     if (tab==='autorizacoes'){ const n=p.consents.filter(c=>c.status==='pendente').length; return n?{n,cls:'warn'}:null; }
     if (tab==='equipamento'){ const n=p.equipment.filter(e=>e.status==='pendente').length; return n?{n,cls:''}:null; }
+    if (tab==='papeis'){ const n=p.duties.filter(d=>d.state==='quero trocar').length; return n?{n,cls:'warn'}:null; }
     if (tab==='tarefas'){ const t=todayISO(); const n=p.tasks.filter(x=>x.due&&x.due<t&&x.status!=='aprovado').length; return n?{n,cls:'bad'}:null; }
     return null;
   }
@@ -774,7 +849,7 @@
     }).join('')}</div>`).join('');
     const dark = effectiveTheme()==='dark';
     return `<aside class="side" aria-label="Navegação">
-      <div class="brand"><span class="logo"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="10" width="18" height="10" rx="1.5" fill="#14171A"/><path d="M3 10l1.6-5 17 3.2-.6 1.8z" fill="#14171A"/><path d="M7 5.9l3 5M12 6.9l3 4.5M17 7.9l2.5 3.3" stroke="#fff" stroke-width="1.8"/></svg></span>Painel de produção</div>
+      <div class="brand"><span class="logo"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="10" width="18" height="10" rx="1.5" fill="#14171A"/><path d="M3 10l1.6-5 17 3.2-.6 1.8z" fill="#14171A"/><path d="M7 5.9l3 5M12 6.9l3 4.5M17 7.9l2.5 3.3" stroke="#fff" stroke-width="1.8"/></svg></span>Miragem</div>
       ${state.projects.length?`<div class="proj-sel"><label class="sr" for="proj-select">Projecto</label><select id="proj-select" data-action="pick-project">${projOpts}</select>${ic('chev',16)}</div>`:''}
       ${newForm}
       <button class="search-btn" data-action="open-palette">${ic('search',16)}Procurar ou ir para<kbd>Ctrl K</kbd></button>
@@ -784,6 +859,7 @@
         <button class="btn" data-action="import-data">${ic('upload',16)}Importar cópia</button>
         ${updateReady?`<button class="btn" data-action="apply-update" style="border-color:var(--ok);color:var(--ok)">${ic('spark',16)}Actualizar app</button>`:''}
         ${deferredInstall?`<button class="btn" data-action="install-app">${ic('download',16)}Instalar app</button>`:''}
+        <button class="btn" data-action="open-settings">${ic('spark',16)}Definições</button>
         <button class="btn" data-action="toggle-theme">${ic(dark?'sun':'moon',16)}${dark?'Tema claro':'Tema escuro'}</button>
         <div class="save-chip" id="save-chip" data-st="saved"><i></i><span>Guardado</span></div>
       </div>
@@ -795,7 +871,7 @@
     if (state.activeTab==='resumo'){
       const h=new Date().getHours();
       const greet=h<5?'Boa madrugada':h<12?'Bom dia':h<19?'Boa tarde':'Boa noite';
-      return `<header class="page-head"><div><p style="margin:0 0 4px;color:var(--ink-3)">${greet}</p><h1>${esc(p.name)}</h1>
+      return `<header class="page-head"><div><p style="margin:0 0 4px;color:var(--ink-3)">${greet}${CFG.userName?', '+esc(CFG.userName):''}</p><h1>${esc(p.name)}</h1>
         <div class="meta">${[p.client,p.location,p.period].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join('')}</div></div>
         <div class="head-actions"><label class="sr" for="status-sel">Estado do projecto</label>
         <select id="status-sel" class="pill ${p.status==='confirmado'?'t-ok':p.status==='negociação'?'t-warn':p.status==='concluído'?'t-mute':'t-sky'}" style="width:170px;height:34px" data-action="set-status">${opts(PROJECT_STATUS,p.status)}</select></div></header>`;
@@ -1017,7 +1093,7 @@
       <h2>Equipa</h2>
       <table><thead><tr><th>Nome</th><th>Função</th><th>Telefone</th><th>Chamada</th><th>Nota</th></tr></thead><tbody>${crew||'<tr><td colspan="5">—</td></tr>'}</tbody></table>
       ${d.notes?`<h2>Notas</h2><div>${esc(d.notes).replace(/\n/g,'<br>')}</div>`:''}
-      <div class="foot">Gerado pelo Painel de produção</div>
+      <div class="foot">Gerado pela Miragem</div>
     </div>`;
   }
   function callSheetText(p,d,idx){
@@ -1049,7 +1125,7 @@
     if(!n) return '';
     if(n.charAt(0)==='+') return n.slice(1).replace(/\D/g,'');
     n=n.replace(/^00/,'');
-    return n.length===9?'244'+n:n;
+    return n.length===9?(CFG.dialCode||'244')+n:n;
   }
   function fallbackCopy(t){
     const ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.opacity='0';
@@ -1119,7 +1195,7 @@
           <div class="krow"><span class="grip" draggable="true" data-drag="${x.id}" title="Arrastar para outra coluna" aria-hidden="true">${ic('grip',16)}</span>
             <input class="in ttl" type="text" value="${esc(x.title)}"${A('tasks',x.id,'title')} placeholder="O que é preciso fazer?" aria-label="Tarefa"></div>
           <div class="krow"><select class="sl"${A('tasks',x.id,'phase')} aria-label="Fase">${opts(TASK_PHASES,x.phase)}</select><input class="in" type="date" value="${esc(x.due)}"${A('tasks',x.id,'due')} aria-label="Prazo"></div>
-          <div class="krow"><input class="in" type="text" value="${esc(x.owner)}"${A('tasks',x.id,'owner')} placeholder="Responsável" aria-label="Responsável">
+          <div class="krow">${whoSel(p,'tasks',x.id,x.who,x.owner)}
             ${ci>0?`<button class="icon-btn" data-action="task-left" data-i="${x.id}" aria-label="Mover para a coluna anterior">${ic('left',15)}</button>`:''}${ci<TASK_COLS.length-1?`<button class="icon-btn" data-action="task-right" data-i="${x.id}" aria-label="Mover para a coluna seguinte">${ic('right',15)}</button>`:''}${rmBtn(` data-action="remove-item" data-c="tasks" data-i="${x.id}"`,'Remover tarefa')}</div>
           ${overdue?'<span class="tag-bad">Atrasada</span>':''}
         </div>`;
@@ -1142,7 +1218,7 @@
         <input class="in" type="number" min="0" value="${c.rate}"${A('contacts',c.id,'rate',true)} placeholder="Cachê por dia" aria-label="Cachê por dia">
         ${rmBtn(` data-action="remove-item" data-c="contacts" data-i="${c.id}"`,'Remover contacto')}
       </div>`).join('');
-    return `<p class="hint" style="margin:-8px 0 16px">Com o telefone preenchido, pode enviar a chamada a cada pessoa por WhatsApp. Números de 9 dígitos assumem +244.</p>
+    return `<p class="hint" style="margin:-8px 0 16px">Com o telefone preenchido, pode enviar a chamada a cada pessoa por WhatsApp. Números de 9 dígitos assumem +${esc(CFG.dialCode||'244')}.</p>
       ${panel(cols,['Nome','Função','Tipo','Telefone','E-mail','Cachê/dia',''],rows,addBtn('Adicionar contacto',' data-action="add-item" data-c="contacts"'))}
       <h2 class="sub">Custo estimado da equipa</h2>
       <div class="metrics" style="max-width:420px"><div class="metric"><div class="k">Cachê × dias na folha de chamada</div><div class="v">${fmt(crewCost(p))} ${esc(p.currency)}</div></div></div>`;
@@ -1170,11 +1246,12 @@
         ${rmBtn(` data-action="remove-item" data-c="finance.payments" data-i="${x.id}"`,'Remover tranche')}
       </div>`).join('');
     const stageOpts=sel=>'<option value="">Sem etapa</option>'+f.stages.map(s=>`<option value="${s.id}"${s.id===sel?' selected':''}>${esc(s.name||'(sem nome)')}</option>`).join('');
-    const expCols='minmax(140px,1.4fr) 150px 170px 150px 120px 32px';
+    const expCols='minmax(130px,1.3fr) 140px 150px 120px 120px 110px 32px';
     const expRows=f.expenses.map(e=>`<div class="row" style="grid-template-columns:${expCols}">
         <input class="in" type="text" value="${esc(e.desc)}"${A('finance.expenses',e.id,'desc')} placeholder="Descrição" aria-label="Descrição">
         <select class="sl"${A('finance.expenses',e.id,'cat')} aria-label="Categoria">${opts(EXP_CATS,e.cat)}</select>
         <select class="sl"${A('finance.expenses',e.id,'stageId')} aria-label="Etapa">${stageOpts(e.stageId)}</select>
+        ${whoSel(p,'finance.expenses',e.id,e.who)}
         <input class="in" type="date" value="${esc(e.date)}"${A('finance.expenses',e.id,'date')} aria-label="Data">
         <input class="in" type="number" min="0" value="${e.amount}"${A('finance.expenses',e.id,'amount',true)} style="text-align:right" aria-label="Valor">
         ${rmBtn(` data-action="remove-item" data-c="finance.expenses" data-i="${e.id}"`,'Remover despesa')}
@@ -1188,14 +1265,14 @@
       ${panel(payCols,['','Tranche','Data prevista','Valor',''],payRows,addBtn('Adicionar tranche',' data-action="add-item" data-c="finance.payments"'))}
       <p class="neg" style="margin-top:8px;font-size:13.5px" data-live="payMismatch">${esc(L.payMismatch)}</p>
       <h2 class="sub">Despesas extraordinárias<small>Total <span data-live="expTotal">${esc(L.expTotal)}</span></small></h2>
-      ${f.expenses.length?panel(expCols,['Descrição','Categoria','Etapa','Data','Valor',''],expRows,addBtn('Adicionar despesa',' data-action="add-item" data-c="finance.expenses"')):empty('wallet','Ainda sem despesas','Registe combustível, transporte, alojamento, guias e taxas para ver o saldo de cada etapa.',`<button class="btn primary" data-action="add-item" data-c="finance.expenses">${ic('plus',16)}Adicionar despesa</button>`)}`;
+      ${f.expenses.length?panel(expCols,['Descrição','Categoria','Etapa','Responsável','Data','Valor',''],expRows,addBtn('Adicionar despesa',' data-action="add-item" data-c="finance.expenses"')):empty('wallet','Ainda sem despesas','Registe combustível, transporte, alojamento, guias e taxas para ver o saldo de cada etapa.',`<button class="btn primary" data-action="add-item" data-c="finance.expenses">${ic('plus',16)}Adicionar despesa</button>`)}`;
   }
 
   /* ---------- Entregáveis ---------- */
   function renderEntregaveis(p){
     const cats=p.deliverables.categories.map(c=>{
       const done=c.items.filter(i=>i.done).length;
-      const items=c.items.map(i=>`<label class="deliv-item${i.done?' done':''}"><input type="checkbox" data-action="toggle-deliverable" data-cat="${c.id}" data-item="${i.id}"${i.done?' checked':''}><span class="lbl">${esc(i.label)}</span>${rmBtn(` data-action="remove-deliv" data-cat="${c.id}" data-item="${i.id}"`,'Remover entregável')}</label>`).join('');
+      const items=c.items.map(i=>`<label class="deliv-item${i.done?' done':''}"><input type="checkbox" data-action="toggle-deliverable" data-cat="${c.id}" data-item="${i.id}"${i.done?' checked':''}><span class="lbl">${esc(i.label)}</span><select class="sl" data-dv="${i.id}" style="width:112px;height:28px;font-size:12.5px" aria-label="Responsável">${whoOpts(p,i.who,'—')}</select>${rmBtn(` data-action="remove-deliv" data-cat="${c.id}" data-item="${i.id}"`,'Remover entregável')}</label>`).join('');
       return `<div class="cat-head"><h2>${esc(c.name)}</h2><span class="prog">${done} de ${c.items.length}</span><button class="btn sm quiet danger" data-action="remove-deliv-cat" data-cat="${c.id}">Remover categoria</button></div>
         <div class="panel">${items?`<div class="deliv-grid">${items}</div>`:`<div class="row"><span class="muted">Sem entregáveis nesta categoria.</span></div>`}
         <div class="inline-add"><input class="in" type="text" id="new-del-${c.id}" placeholder="Novo entregável" aria-label="Novo entregável"><button class="btn sm" data-action="add-deliv-item" data-cat="${c.id}">${ic('plus',15)}Adicionar</button></div></div>`;
@@ -1205,29 +1282,31 @@
 
   /* ---------- Autorizações ---------- */
   function renderAutorizacoes(p){
-    const cols='minmax(160px,1.6fr) 170px 140px minmax(120px,1fr) 32px';
+    const cols='minmax(150px,1.5fr) 160px 140px minmax(110px,1fr) minmax(110px,1fr) 32px';
     if (!p.consents.length) return empty('shield','Nenhuma autorização registada','Registe consentimentos de pessoas, permissões de locais sagrados e licenças como a do drone.',`<button class="btn primary" data-action="add-item" data-c="consents">${ic('plus',16)}Adicionar autorização</button>`);
     const rows=p.consents.map(c=>`<div class="row" style="grid-template-columns:${cols}">
         <input class="in" type="text" value="${esc(c.subject)}"${A('consents',c.id,'subject')} placeholder="O que precisa de autorização" aria-label="Assunto">
         <select class="sl"${A('consents',c.id,'type')} aria-label="Tipo">${opts(CONSENT_TYPES,c.type)}</select>
         <select class="pill ${c.status==='obtido'?'t-ok':c.status==='pendente'?'t-warn':'t-mute'}"${A('consents',c.id,'status')} aria-label="Estado">${opts(CONSENT_STATUS,c.status)}</select>
+        ${whoSel(p,'consents',c.id,c.who)}
         <input class="in" type="text" value="${esc(c.notes)}"${A('consents',c.id,'notes')} placeholder="Notas" aria-label="Notas">
         ${rmBtn(` data-action="remove-item" data-c="consents" data-i="${c.id}"`,'Remover autorização')}
       </div>`).join('');
-    return panel(cols,['Assunto','Tipo','Estado','Notas',''],rows,addBtn('Adicionar autorização',' data-action="add-item" data-c="consents"'));
+    return panel(cols,['Assunto','Tipo','Estado','Responsável','Notas',''],rows,addBtn('Adicionar autorização',' data-action="add-item" data-c="consents"'));
   }
 
   /* ---------- Equipamento ---------- */
   function renderEquipamento(p){
-    const cols='minmax(140px,1.4fr) minmax(140px,1.4fr) 150px 32px';
+    const cols='minmax(140px,1.4fr) minmax(140px,1.4fr) minmax(110px,1fr) 150px 32px';
     if (!p.equipment.length) return empty('case','Sem equipamento listado','Liste câmaras, lentes, drones e acessórios, e registe quem fornece cada um.',`<button class="btn primary" data-action="add-item" data-c="equipment">${ic('plus',16)}Adicionar item</button>`);
     const rows=p.equipment.map(e=>`<div class="row" style="grid-template-columns:${cols}">
         <input class="in" type="text" value="${esc(e.item)}"${A('equipment',e.id,'item')} placeholder="Item" aria-label="Item">
         <input class="in" type="text" value="${esc(e.providedBy)}"${A('equipment',e.id,'providedBy')} placeholder="Quem fornece" aria-label="Fornecido por">
+        ${whoSel(p,'equipment',e.id,e.who)}
         <select class="pill ${e.status==='confirmado'?'t-ok':'t-warn'}"${A('equipment',e.id,'status')} aria-label="Estado">${opts(['pendente','confirmado'],e.status)}</select>
         ${rmBtn(` data-action="remove-item" data-c="equipment" data-i="${e.id}"`,'Remover item')}
       </div>`).join('');
-    return panel(cols,['Item','Fornecido por','Estado',''],rows,addBtn('Adicionar item',' data-action="add-item" data-c="equipment"'));
+    return panel(cols,['Item','Fornecido por','Responsável','Estado',''],rows,addBtn('Adicionar item',' data-action="add-item" data-c="equipment"'));
   }
 
   /* ---------- Referências ---------- */
@@ -1248,6 +1327,111 @@
     return panel(cols,['Título','Link','Tag','Nota','',''],rows,addBtn('Adicionar referência',' data-action="add-item" data-c="references"'));
   }
 
+  /* ---------- Papéis e guia ---------- */
+  const whoOpts = (p,who,blank) => `<option value="">${blank||'Sem responsável'}</option>`+p.members.map(m=>`<option value="${m.id}"${m.id===who?' selected':''}>${esc(m.name||'(sem nome)')}</option>`).join('');
+  const whoSel = (p,c,id,who,legacy) => `<select class="sl"${A(c,id,'who')} aria-label="Responsável">${whoOpts(p,who,legacy&&!who?esc(legacy)+' (escolher)':'')}</select>`;
+  const LOAD_LABELS = {t:['tarefa','tarefas'], c:['autorização','autorizações'], e:['item de equipamento','itens de equipamento'], d:['entregável','entregáveis']};
+  function loads(p){
+    const L={}; p.members.forEach(m=>L[m.id]={t:0,c:0,e:0,d:0,n:0}); let free=0;
+    const add=(id,k)=>{ if(L[id]){ L[id][k]++; L[id].n++; } else free++; };
+    p.tasks.forEach(x=>{ if(x.status!=='aprovado') add(x.who,'t'); });
+    p.consents.forEach(x=>{ if(x.status==='pendente') add(x.who,'c'); });
+    p.equipment.forEach(x=>{ if(x.status==='pendente') add(x.who,'e'); });
+    p.deliverables.categories.forEach(c=>c.items.forEach(i=>{ if(!i.done) add(i.who,'d'); }));
+    return {L,free};
+  }
+  const loadText = o => Object.keys(LOAD_LABELS).map(k=>o[k]?o[k]+' '+LOAD_LABELS[k][o[k]===1?0:1]:'').filter(Boolean).join(' · ') || 'Nada em aberto';
+
+  function renderPapeis(p){
+    if (!p.members.length) return empty('user','Ainda sem pessoas','Adicione quem vai trabalhar neste projecto e distribua as funções.',`<button class="btn primary" data-action="add-item" data-c="members">${ic('plus',16)}Adicionar pessoa</button>`);
+    const {L,free}=loads(p);
+    const mets=p.members.map(m=>`<div class="metric"><div class="k">${esc(m.name||'(sem nome)')}</div><div class="v">${L[m.id].n}</div><div class="load">${loadText(L[m.id])}</div></div>`).join('')
+      +`<div class="metric"><div class="k">Sem responsável</div><div class="v${free?' neg':''}">${free}</div><div class="load">itens em aberto por atribuir</div></div>`;
+    const cols='130px minmax(160px,1fr) 170px 32px';
+    const cards=p.members.map(m=>{
+      const ds=p.duties.filter(d=>d.memberId===m.id);
+      const rows=ds.map(d=>`<div class="row" style="grid-template-columns:${cols}">
+        <select class="pill ${d.state==='aceite'?'t-ok':d.state==='quero trocar'?'t-warn':'t-mute'}"${A('duties',d.id,'state')} aria-label="Estado da função">${opts(DUTY_STATE,d.state)}</select>
+        <input class="in" type="text" value="${esc(d.label)}"${A('duties',d.id,'label')} placeholder="O que cabe a esta pessoa" aria-label="Função">
+        <select class="sl"${A('duties',d.id,'memberId')} aria-label="Passar a função para outra pessoa">${p.members.map(x=>`<option value="${x.id}"${x.id===d.memberId?' selected':''}>${x.id===d.memberId?'Com ':'Passar para '}${esc(x.name||'(sem nome)')}</option>`).join('')}</select>
+        ${rmBtn(` data-action="remove-item" data-c="duties" data-i="${d.id}"`,'Remover função')}</div>`).join('');
+      return `<section class="mcard" aria-label="${esc(m.name||'Pessoa')}">
+        <div class="mhead">
+          <input class="in nm" type="text" value="${esc(m.name)}"${A('members',m.id,'name')} placeholder="Nome" aria-label="Nome">
+          <input class="in" type="text" value="${esc(m.title)}"${A('members',m.id,'title')} placeholder="Função em poucas palavras" aria-label="Função">
+          <select class="sl"${A('members',m.id,'kind')} aria-label="Tipo de papel">${Object.keys(KINDS).map(k=>`<option value="${k}"${k===m.kind?' selected':''}>${KINDS[k]}</option>`).join('')}</select>
+        </div>
+        <div style="padding:0 10px 8px"><input class="in" type="text" value="${esc(m.focus)}"${A('members',m.id,'focus')} placeholder="Foco: onde esta pessoa faz mais falta" aria-label="Foco"></div>
+        ${ds.length?rows:'<div class="row"><span class="muted">Ainda sem funções.</span></div>'}
+        <div class="panel-foot">${addBtn('Adicionar função',` data-action="add-item" data-c="duties" data-m="${m.id}"`)}</div>
+        <div style="padding:10px 10px 6px"><textarea class="in" rows="2" style="min-height:56px"${A('members',m.id,'note')} placeholder="${esc((m.name||'Esta pessoa')+': o que gostaria de fazer, o que prefere trocar, dúvidas')}" aria-label="O que prefere fazer">${esc(m.note)}</textarea></div>
+        <div class="mfoot"><span class="load">${loadText(L[m.id])}</span><span class="sp"></span>
+          ${m.kind!=='outro'?`<button class="btn sm" data-action="open-guide" data-kind="${m.kind}">${ic('book',15)}Aprender este papel</button>`:''}
+          <button class="btn sm quiet danger" data-action="remove-member" data-i="${m.id}">Remover pessoa</button></div>
+      </section>`;
+    }).join('');
+    return `<p class="hint" style="margin:-8px 0 16px">Estas funções são uma proposta. Cada pessoa pode marcar uma função como aceite ou "quero trocar", passá-la a outra pessoa ou escrever o que prefere fazer. Os dados ficam guardados neste aparelho: para juntar as opiniões, use Exportar cópia e envie o ficheiro.</p>
+      <div class="metrics" style="margin-bottom:24px">${mets}</div>${cards}`;
+  }
+
+  const GUIDE = {
+    inicio:{tab:'Começar', intro:'Uma produção audiovisual tem três fases. Quase todos os problemas de última hora nascem de algo que ficou por decidir na primeira.',
+      blocks:[
+        ['Pré-produção: decidir antes de filmar',['Fechar o roteiro: o que se filma, onde e em que dia.','Garantir verbas, equipamento e autorizações.','Visitar os locais difíceis antes do dia de filmagem.']],
+        ['Produção: filmar com um plano',['Cada dia tem folha de chamada: quem, onde, a que horas e plano B.','Primeiro os planos essenciais, depois os desejáveis.','No fim de cada dia, copiar o material para dois sítios.']],
+        ['Pós-produção: transformar material em entregas',['Organizar por local e tema logo no fim de cada dia.','Escolher as melhores imagens, tratar a cor e montar as peças combinadas.','Entregar só depois de o cliente aprovar.']],
+        ['Três regras que protegem a equipa',['Nada se filma sem o roteiro aprovado.','Cada decisão tem um dono: quem paga aprova, quem filma decide a imagem, quem organiza decide a logística.','Dinheiro, autorizações e equipamento resolvem-se antes do primeiro dia.']]],
+      go:['papeis','roteiro']},
+    exec:{tab:'Produtor executivo', intro:'O produtor executivo garante que o projecto existe: aprova o dinheiro, aprova o rumo e abre as portas. Não precisa de saber filmar. Precisa de decidir depressa e de confiar em quem filma.',
+      blocks:[
+        ['Antes de filmar',['Aprovar o orçamento e libertar as verbas para equipamento, combustível, alimentação e guias.','Decidir o que é prioritário e aprovar o roteiro por escrito.','Pedir as autorizações que só quem tem autoridade local consegue: locais privados, públicos e sagrados.','Tratar do seguro ou da protecção do equipamento.']],
+        ['Durante a produção',['Estar contactável: uma decisão parada pode custar um dia de filmagem.','Responder no mesmo dia aos pedidos de despesa extra.','Apresentar a equipa às pessoas certas em cada local.']],
+        ['No fim',['Ver as peças com atenção e enviar uma só lista de alterações, em vez de várias soltas.','Aprovar cada entregável para a edição poder fechar.']],
+        ['Erros comuns',['Mudar o roteiro a meio da produção sem avisar.','Dar opinião sobre a imagem durante a filmagem. É melhor dá-la ao ver o material.']]],
+      go:['financeiro','autorizacoes','entregaveis']},
+    real:{tab:'Realização, imagem e edição', intro:'Quem realiza decide como o projecto se vê e se conta. Junta três funções: realizador (a história), director de fotografia (luz e enquadramento) e editor (a montagem final).',
+      blocks:[
+        ['Antes de filmar',['Escrever o roteiro de captação: locais, momentos e planos, dia a dia.','Escolher a luz de cada local: nascer do sol, fim da tarde ou interior.','Preparar a shot list com planos essenciais e desejáveis.','Testar o equipamento: baterias, cartões e discos.']],
+        ['Durante a produção',['Filmar o mesmo sítio em plano geral, médio e de pormenor: dá material à edição.','Pedir às pessoas que ajam com naturalidade e explicar para que servem as imagens.','Pedir consentimento a quem aparece com destaque.','Copiar o material no fim de cada dia.']],
+        ['Pós-produção',['Organizar por local e tema antes de editar.','Seleccionar, tratar a cor e exportar as peças combinadas.']],
+        ['Erros comuns',['Filmar sem pensar na edição: faltam planos de cobertura.','Descuidar o som: áudio mau estraga uma boa imagem.','Tentar filmar tudo em vez do essencial.']]],
+      go:['roteiro','planos','referencias']},
+    prod:{tab:'Produção e logística', intro:'Quem produz faz o projecto acontecer no terreno: horários, transporte, comida, contactos e o dinheiro do dia a dia. No cinema chama-se produtor de linha e primeiro assistente de realização.',
+      blocks:[
+        ['Antes de filmar',['Montar o cronograma: um dia, uma zona, com tempos de deslocação realistas.','Visitar os locais difíceis: estrada, acesso, onde comer e onde dormir.','Fazer a folha de chamada de cada dia e enviá-la na véspera.','Reservar transporte, combustível e guias.']],
+        ['Durante a produção',['Chegar primeiro ao local e sair por último.','Avisar a equipa quando a luz ou o clima mudarem o plano.','Registar cada despesa no momento, com valor e etapa.','Ter sempre um plano B para chuva e estradas.']],
+        ['Reporte',['Dar ao dono do projecto um resumo curto do gasto e dos atrasos, sempre que houver novidades.']],
+        ['Erros comuns',['Subestimar o tempo de estrada.','Não registar despesas pequenas: somam-se.','Deixar as autorizações para o próprio dia.']]],
+      go:['chamada','calendario','financeiro','equipamento']},
+    glossario:{tab:'Glossário'}
+  };
+  const GLOSS = [
+    ['Roteiro de captação','Lista do que se vai filmar, em que local e em que dia. Não é um guião de ficção.'],
+    ['Shot list','Lista de planos de cada dia, marcados como essenciais ou desejáveis.'],
+    ['Folha de chamada','Documento de um dia de filmagem: quem vem, onde, a que horas, contactos e plano B.'],
+    ['Plano geral, médio e de pormenor','Distância da câmara: o local inteiro, a pessoa ou o objecto, e um detalhe de perto.'],
+    ['Cobertura (B-roll)','Imagens de apoio que cobrem cortes e dão ritmo: mãos, ruas, paisagem.'],
+    ['Visita técnica','Ida prévia a um local para ver acesso, luz, som e riscos antes de filmar.'],
+    ['Plano B','O que se faz se chover, se a estrada falhar ou se a autorização não chegar.'],
+    ['Consentimento','Autorização de uma pessoa para usar a sua imagem, sobretudo em publicidade.'],
+    ['Autorização de local','Permissão de quem manda no lugar. Em locais sagrados exige a orientação certa.'],
+    ['Material bruto','Tudo o que foi filmado ou fotografado, antes de escolher e editar.'],
+    ['Entregável','Cada peça final prometida ao cliente: fotografias, vídeos, ficheiros organizados.']];
+
+  function renderGuia(p){
+    const k=GUIDE[state.ui.guideKind]?state.ui.guideKind:'inicio'; const g=GUIDE[k];
+    const chips=Object.keys(GUIDE).map(x=>`<button class="chip${k===x?' active':''}" data-action="guide-tab" data-kind="${x}">${GUIDE[x].tab}</button>`).join('');
+    let body;
+    if (k==='glossario') body=`<div class="gbox"><dl style="margin:0">${GLOSS.map(t=>`<dt>${t[0]}</dt><dd>${t[1]}</dd>`).join('')}</dl></div>`;
+    else {
+      const who=p.members.filter(m=>m.kind===k).map(m=>esc(m.name||'(sem nome)')).join(', ');
+      body=`<p style="margin-bottom:${who?6:14}px">${g.intro}</p>${who?`<p class="hint" style="margin-bottom:14px">Neste projecto: ${who}</p>`:''}`
+        +g.blocks.map(b=>`<div class="gbox"><h3>${b[0]}</h3><ul>${b[1].map(i=>`<li>${i}</li>`).join('')}</ul></div>`).join('')
+        +`<div class="glinks">${g.go.map(t=>`<button class="btn sm" data-action="switch-tab" data-tab="${t}">${ic(SECTIONS[t].icon,15)}Abrir ${SECTIONS[t].title}</button>`).join('')}</div>`;
+    }
+    return `<div class="guide"><div class="chips">${chips}</div>${body}</div>`;
+  }
+
   /* ---------- app ---------- */
   function renderApp(keepScroll){
     const y=window.scrollY;
@@ -1256,7 +1440,7 @@
     if (!p){
       main=`<header class="page-head"><div><h1>Bem-vindo</h1><p>Ainda não tem projectos. Crie um do zero ou importe um ficheiro que já tenha.</p></div></header>${empty('camera','Comece o primeiro projecto','Crie um projecto para planear o roteiro, a folha de chamada, o orçamento e as entregas num só sítio.','<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px"><button class="btn primary" data-action="new-project">'+ic('plus',16)+'Criar projecto</button><button class="btn" data-action="import-data">'+ic('upload',16)+'Importar ficheiro</button></div>')}`;
     } else {
-      const R={resumo:renderResumo,roteiro:renderRoteiro,planos:renderPlanos,chamada:renderChamada,calendario:renderCalendario,tarefas:renderTarefas,equipa:renderEquipa,financeiro:renderFinanceiro,entregaveis:renderEntregaveis,autorizacoes:renderAutorizacoes,equipamento:renderEquipamento,referencias:renderReferencias};
+      const R={resumo:renderResumo,roteiro:renderRoteiro,planos:renderPlanos,chamada:renderChamada,calendario:renderCalendario,tarefas:renderTarefas,equipa:renderEquipa,financeiro:renderFinanceiro,entregaveis:renderEntregaveis,autorizacoes:renderAutorizacoes,equipamento:renderEquipamento,referencias:renderReferencias,papeis:renderPapeis,guia:renderGuia};
       main=renderPageHead(p)+R[state.activeTab](p);
     }
     const S=SECTIONS[state.activeTab];
@@ -1292,11 +1476,11 @@
           if (!np.name) np.name='Projecto importado';
           if (state.projects.some(x=>x.id===np.id)) np.id=uid();
           state.projects.push(np); state.activeProjectId=np.id; state.activeTab='resumo'; state.ui.menuOpen=false;
-          applyTheme(); renderApp(false); persistNow(); toast('Projecto "'+np.name+'" importado'); return;
+          applyTheme(); renderApp(false); persistNow(); toast('Projecto "'+np.name+'" importado'); if(ob.open&&ob.mode==='onboarding') endOnboarding(); return;
         }
         if (!parsed||!Array.isArray(parsed.projects)) throw new Error('formato inválido');
         if (state.projects.length && !confirm('Isto substitui TODOS os projectos actuais pela cópia de segurança. Continuar?')) return;
-        state=normalizeState(parsed); applyTheme(); renderApp(false); persistNow(); toast('Cópia importada');
+        state=normalizeState(parsed); applyTheme(); renderApp(false); persistNow(); toast('Cópia importada'); if(ob.open&&ob.mode==='onboarding'){ CFG.onboarded=true; closeOB(); renderApp(false); }
       }catch(e){ toast('Não foi possível importar este ficheiro: '+e.message); }
     };
     reader.readAsText(file);
@@ -1318,7 +1502,9 @@
       return {id:uid(), dayId, locId:'', desc:'', type:prev?prev.type:'Plano geral', move:prev?prev.move:'Fixo', kind:prev?prev.kind:'Vídeo', prio:'essencial', done:false};
     },
     'contacts': ()=>({id:uid(), name:'', role:'', type:'equipa', phone:'', email:'', rate:0}),
-    'tasks': (p,a)=>({id:uid(), title:'', phase:a('data-phase')||'pré-produção', status:a('data-status')||'em espera', due:'', owner:''}),
+    'tasks': (p,a)=>({id:uid(), title:'', phase:a('data-phase')||'pré-produção', status:a('data-status')||'em espera', due:'', owner:'', who:''}),
+    'members': ()=>({id:uid(), name:'', title:'', kind:'outro', focus:'', note:''}),
+    'duties': (p,a)=>({id:uid(), memberId:a('data-m')||(p.members[0]?p.members[0].id:''), label:'', state:'proposta'}),
     'phases': ()=>({id:uid(), name:'Nova fase', start:'', end:''}),
     'references': ()=>({id:uid(), title:'', url:'', tag:'', note:''}),
     'consents': ()=>({id:uid(), subject:'', type:'pessoa', status:'pendente', notes:''}),
@@ -1327,8 +1513,8 @@
     'finance.payments': ()=>({id:uid(), label:'Nova tranche', value:0, due:'', paid:false}),
     'finance.expenses': ()=>({id:uid(), desc:'', amount:0, cat:'Outro', stageId:'', date:todayISO()})
   };
-  const DESTRUCTIVE = new Set(['remove-day','remove-loc','remove-item','remove-deliv','remove-deliv-cat','remove-crew','delete-project']);
-  const REMOVED_MSG = {'remove-day':'Dia removido','remove-loc':'Local removido','remove-crew':'Pessoa retirada da chamada','remove-deliv':'Entregável removido','remove-deliv-cat':'Categoria removida','delete-project':'Projecto removido','remove-item':'Item removido'};
+  const DESTRUCTIVE = new Set(['remove-day','remove-loc','remove-item','remove-deliv','remove-deliv-cat','remove-crew','remove-member','delete-project']);
+  const REMOVED_MSG = {'remove-day':'Dia removido','remove-loc':'Local removido','remove-crew':'Pessoa retirada da chamada','remove-deliv':'Entregável removido','remove-deliv-cat':'Categoria removida','delete-project':'Projecto removido','remove-item':'Item removido','remove-member':'Pessoa removida'};
 
   // devolve false/{skip:true} para não renderizar; {keep,focus} para controlar o render
   function act(action,a){
@@ -1340,6 +1526,8 @@
     if (action==='toggle-theme'){ state.theme=effectiveTheme()==='dark'?'light':'dark'; applyTheme(); return {}; }
     if (action==='export-data'){ doExport(); state.ui.lastExport=todayISO(); toast('Cópia exportada'); return {}; }
     if (action==='import-data'){ document.getElementById('import-input').click(); return {skip:true}; }
+    if (action==='open-settings'){ openOB('settings'); return {skip:true}; }
+    if (action==='replay-intro'){ openOB('onboarding'); return {skip:true}; }
     if (action==='apply-update'){ applyUpdate(); return {skip:true}; }
     if (action==='check-update'){ checkUpdate(true); return {skip:true}; }
     if (action==='install-app'){ if(deferredInstall){ const d=deferredInstall; d.prompt(); d.userChoice.finally(()=>{ deferredInstall=null; renderApp(); }); } return {skip:true}; }
@@ -1401,6 +1589,13 @@
         p.deliverables.categories.push({id:uid(), name:v, items:[]}); return {focus:'#new-del-cat'};
       }
       case 'remove-deliv-cat': { const id=a('data-cat'); p.deliverables.categories=p.deliverables.categories.filter(c=>c.id!==id); return {}; }
+      case 'open-guide': state.activeTab='guia'; state.ui.guideKind=a('data-kind'); state.ui.menuOpen=false; return {keep:false};
+      case 'guide-tab': state.ui.guideKind=a('data-kind'); return {};
+      case 'remove-member': {
+        const id=a('data-i'); p.members=p.members.filter(m=>m.id!==id); p.duties=p.duties.filter(d=>d.memberId!==id);
+        p.tasks.concat(p.consents,p.equipment,p.finance.expenses).forEach(x=>{ if(x.who===id) x.who=''; });
+        p.deliverables.categories.forEach(c=>c.items.forEach(i=>{ if(i.who===id) i.who=''; })); return {};
+      }
       case 'gen-shots': {
         const d=findDay(p,a('data-day')); if(!d) return false;
         const base=[['plano geral (estabelecer o local)','Plano geral','Fixo','Vídeo','essencial'],['pormenores e ambiente','Plano de pormenor','Gimbal','Vídeo','desejável'],['fotografia principal','Foto de ambiente','—','Foto','essencial']];
@@ -1444,7 +1639,7 @@
   }
   function ensureDay(d){
     d.crew=d.crew||[]; ['date','sunrise','sunset','weather','planB','meetingPoint','mapUrl','emergency','notes'].forEach(k=>{ if(d[k]===undefined) d[k]=''; });
-    if (d.callTime===undefined) d.callTime='07:00'; if (d.wrapTime===undefined) d.wrapTime='18:00'; return d;
+    if (d.callTime===undefined) d.callTime=CFG.callTime; if (d.wrapTime===undefined) d.wrapTime=CFG.wrapTime; return d;
   }
 
   function run(action,a){
@@ -1467,6 +1662,7 @@
       const arr=resolveColl(p,t.getAttribute('data-c')); const it=arr&&findBy(arr,t.getAttribute('data-i')); if(!it) return false;
       it[t.getAttribute('data-k')]=t.hasAttribute('data-num')?(Number(val)||0):val; return true;
     }
+    if (t.hasAttribute('data-dv')){ let it=null; p.deliverables.categories.forEach(c=>{ const f=findBy(c.items,t.getAttribute('data-dv')); if(f) it=f; }); if(!it) return false; it.who=val; return true; }
     if (t.hasAttribute('data-pf')){ p[t.getAttribute('data-pf')]=val; return true; }
     if (t.hasAttribute('data-df')){ const d=findDay(p,t.getAttribute('data-day')); if(!d) return false; d[t.getAttribute('data-df')]=val; return true; }
     if (t.hasAttribute('data-lf')){ const d=findDay(p,t.getAttribute('data-day')); const l=d&&findBy(d.locations,t.getAttribute('data-loc')); if(!l) return false; l[t.getAttribute('data-lf')]=val; return true; }
@@ -1541,6 +1737,8 @@
     }
     state.projects.filter(x=>!p||x.id!==p.id).forEach(x=>c.push({label:'Abrir projecto '+x.name, hint:'Projectos', icon:'home', run:()=>run('select-project',go1({'data-project':x.id}))}));
     c.push({label:'Novo projecto', hint:'Criar', icon:'plus', run:()=>run('new-project',go1({}))});
+    c.push({label:'Definições', hint:'App', icon:'spark', run:()=>run('open-settings',go1({}))});
+    c.push({label:'Rever a introdução', hint:'App', icon:'home', run:()=>run('replay-intro',go1({}))});
     c.push({label:'Procurar actualizações da app', hint:'App', icon:'spark', run:()=>run('check-update',go1({}))});
     c.push({label:'Exportar cópia de segurança', hint:'Dados', icon:'download', run:()=>run('export-data',go1({}))});
     c.push({label:effectiveTheme()==='dark'?'Mudar para tema claro':'Mudar para tema escuro', hint:'Aspecto', icon:effectiveTheme()==='dark'?'sun':'moon', run:()=>run('toggle-theme',go1({}))});
@@ -1580,6 +1778,93 @@
   /* ---------- PWA ---------- */
   window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredInstall=e; renderApp(); });
   window.addEventListener('appinstalled',()=>{ deferredInstall=null; renderApp(); toast('App instalada'); });
+  /* ---------- introdução (1.º uso) e definições ---------- */
+  const ob={open:false, mode:'onboarding', step:0, persisted:null};
+  const OB_STEPS=4;
+  const CURRENCIES=['Kz','USD','EUR','R$','MT','Esc.','ZAR'];
+  const DIALS=[['244','Angola (+244)'],['351','Portugal (+351)'],['55','Brasil (+55)'],['258','Moçambique (+258)'],['238','Cabo Verde (+238)'],['245','Guiné-Bissau (+245)'],['239','São Tomé (+239)'],['27','África do Sul (+27)'],['1','EUA/Canadá (+1)'],['44','Reino Unido (+44)']];
+  const obf = {
+    name:()=>`<div class="field"><label for="ob-name">Como devemos chamar-lhe?</label><input id="ob-name" class="in" type="text" data-ob="userName" value="${esc(CFG.userName)}" placeholder="O seu nome (opcional)" autocomplete="given-name"></div>`,
+    prefs:()=>`
+      <div class="ob-row2">
+        <div class="field"><label for="ob-cur">Moeda dos orçamentos</label><input id="ob-cur" class="in" list="ob-curs" data-ob="currency" value="${esc(CFG.currency)}"><datalist id="ob-curs">${CURRENCIES.map(c=>`<option value="${c}">`).join('')}</datalist></div>
+        <div class="field"><label for="ob-dial">País dos contactos</label><select id="ob-dial" class="in" data-ob="dialCode">${DIALS.map(d=>`<option value="${d[0]}"${d[0]===CFG.dialCode?' selected':''}>${d[1]}</option>`).join('')}</select></div>
+      </div>
+      <p class="hint" style="margin-top:-6px">O país serve para os links de WhatsApp: números de 9 dígitos recebem este indicativo.</p>
+      <div class="ob-row2">
+        <div class="field"><label for="ob-call">Hora de chamada habitual</label><input id="ob-call" class="in" type="time" data-ob="callTime" value="${esc(CFG.callTime)}"></div>
+        <div class="field"><label for="ob-wrap">Hora de fim habitual</label><input id="ob-wrap" class="in" type="time" data-ob="wrapTime" value="${esc(CFG.wrapTime)}"></div>
+      </div>
+      <div class="field"><label>Aspecto</label><div class="ob-chips" role="group" aria-label="Tema">${[['auto','Automático'],['light','Claro'],['dark','Escuro']].map(t=>`<button type="button" data-obtheme="${t[0]}" aria-pressed="${state.theme===t[0]}">${t[1]}</button>`).join('')}</div></div>`
+  };
+  function obStepHTML(){
+    const st=ob.step;
+    if (ob.mode==='settings') return {title:'Definições', sub:'Aplicam-se a novos projectos e dias. O que já criou não muda.', body:obf.name()+obf.prefs()};
+    if (st===0) return {title:'Bem-vindo à Miragem', sub:'Planeie, filme e entregue sem perder o fio. Vamos preparar o essencial em menos de um minuto.',
+      body:`<ul class="ob-list">${['Roteiro, shot list e folha de chamada prontos a enviar por WhatsApp.','Orçamento, tranches e despesas sempre à vista.','Funciona sem internet e pode ser instalada como app.'].map(t=>`<li>${ic('check',16)}<span>${t}</span></li>`).join('')}</ul>${obf.name()}`};
+    if (st===1) return {title:'As suas preferências', sub:'Escolhemos valores por defeito para poupar-lhe digitação. Pode mudá-los depois em Definições.', body:obf.prefs()};
+    if (st===2){
+      const pers = ob.persisted===true ? '<span class="ok">Protegido ✓</span>' : `<button class="btn sm" data-obact="persist">Proteger</button>`;
+      const inst = deferredInstall ? `<div class="ob-card"><div>Instalar no dispositivo<small>Abre como app própria, com ícone e em ecrã inteiro.</small></div><button class="btn sm" data-obact="install">Instalar</button></div>` : '';
+      return {title:'Os seus dados ficam consigo', sub:'Tudo é guardado neste dispositivo, sem conta e sem servidor. Isso dá privacidade e velocidade, mas pede um cuidado.',
+        body:`<div class="ob-card"><div>Proteger contra limpeza automática<small>Pede ao browser para não apagar os dados quando o espaço é pouco.</small></div>${pers}</div>${inst}
+        <div class="ob-card"><div>Cópias de segurança<small>Use “Exportar cópia” na barra lateral de vez em quando. Para mudar de dispositivo, exporte aqui e importe no outro.</small></div></div>
+        <div class="ob-card"><div>Já tem um ficheiro?<small>Importe um projecto ou uma cópia completa.</small></div><button class="btn sm" data-obact="import">Importar</button></div>`};
+    }
+    return {title:'O primeiro projecto', sub:'Só o nome é necessário. Os restantes campos podem ficar para depois.',
+      body:`<div class="field"><label for="ob-pn">Nome do projecto</label><input id="ob-pn" class="in" type="text" placeholder="Ex.: Campanha de verão" autocomplete="off"></div>
+      <div class="ob-row2"><div class="field"><label for="ob-pc">Cliente</label><input id="ob-pc" class="in" type="text" autocomplete="off"></div><div class="field"><label for="ob-pl">Local</label><input id="ob-pl" class="in" type="text" autocomplete="off"></div></div>`};
+  }
+  function renderOB(){
+    const el=document.getElementById('ob'); const v=obStepHTML(); const last=ob.step===OB_STEPS-1; const set=ob.mode==='settings';
+    const dots=set?'':`<div class="ob-dots" aria-hidden="true">${Array.from({length:OB_STEPS},(_,i)=>`<i class="${i<=ob.step?'on':''}"></i>`).join('')}</div>`;
+    const foot=set
+      ? `<div class="ob-foot"><button class="ob-skip" data-obact="intro">Rever introdução</button><button class="btn primary" data-obact="close">Concluído</button></div>`
+      : `<div class="ob-foot">${ob.step>0?'<button class="btn" data-obact="back">Voltar</button>':'<button class="ob-skip" data-obact="skip">Saltar introdução</button>'}<span class="grow"></span>${last?'<button class="ob-skip" data-obact="finish-empty">Explorar sem projecto</button><button class="btn primary" data-obact="finish-project">Criar projecto</button>':'<button class="btn primary" data-obact="next">Continuar</button>'}</div>`;
+    el.innerHTML=`<div class="ob" role="dialog" aria-modal="true" aria-labelledby="ob-t"><div class="ob-head">${dots}<h2 id="ob-t">${v.title}</h2><p class="ob-sub">${v.sub}</p></div><div class="ob-body">${v.body}</div>${foot}</div>`;
+    const f=el.querySelector('input:not([type=hidden]),select'); if(f) setTimeout(()=>f.focus(),30);
+  }
+  function openOB(mode){ ob.open=true; ob.mode=mode; ob.step=0; const el=document.getElementById('ob'); el.classList.add('open'); el.setAttribute('aria-hidden','false'); renderOB();
+    if (navigator.storage&&navigator.storage.persisted) navigator.storage.persisted().then(v=>{ ob.persisted=v; if(ob.open&&ob.mode==='onboarding'&&ob.step===2) renderOB(); }).catch(()=>{}); }
+  function closeOB(){ ob.open=false; const el=document.getElementById('ob'); el.classList.remove('open'); el.setAttribute('aria-hidden','true'); el.innerHTML=''; }
+  function endOnboarding(msg){
+    CFG.onboarded=true; closeOB(); renderApp(false); persistNow();
+    if (msg) celebrate(msg);
+  }
+  function obGo(delta){ ob.step=Math.max(0,Math.min(OB_STEPS-1,ob.step+delta)); renderOB(); }
+  (function(){
+    const el=document.getElementById('ob');
+    const sync=t=>{ const k=t.getAttribute('data-ob'); if(!k) return; let v=t.value; if(k==='currency') v=v.trim()||'Kz'; CFG[k]=v; scheduleSave(); if(ob.mode==='settings'&&k==='userName') {/* sem re-render */} };
+    el.addEventListener('input',e=>{ if(e.target.matches('[data-ob]')) sync(e.target); });
+    el.addEventListener('change',e=>{ if(e.target.matches('[data-ob]')) sync(e.target); });
+    el.addEventListener('click',e=>{
+      const th=e.target.closest('[data-obtheme]');
+      if (th){ state.theme=th.getAttribute('data-obtheme'); applyTheme(); scheduleSave(); renderOB(); return; }
+      const b=e.target.closest('[data-obact]'); if(!b) return;
+      const a=b.getAttribute('data-obact');
+      if (a==='next') obGo(1);
+      else if (a==='back') obGo(-1);
+      else if (a==='skip'){ endOnboarding(); }
+      else if (a==='close'){ closeOB(); renderApp(); persistNow(); }
+      else if (a==='intro'){ ob.mode='onboarding'; ob.step=0; renderOB(); }
+      else if (a==='persist'){ if(navigator.storage&&navigator.storage.persist) navigator.storage.persist().then(v=>{ ob.persisted=v; if(!v) toast('O browser decide sozinho. Exportar cópias continua a ser o mais seguro.'); renderOB(); }); else toast('Este browser não suporta esta opção'); }
+      else if (a==='install'){ if(deferredInstall){ const d=deferredInstall; d.prompt(); d.userChoice.finally(()=>{ deferredInstall=null; renderOB(); }); } }
+      else if (a==='import'){ document.getElementById('import-input').click(); }
+      else if (a==='finish-empty') endOnboarding('Tudo pronto!');
+      else if (a==='finish-project'){
+        const name=(document.getElementById('ob-pn').value||'').trim();
+        if (!name){ document.getElementById('ob-pn').focus(); toast('Dê um nome ao projecto'); return; }
+        const np=ensureProject({id:uid(), name, client:(document.getElementById('ob-pc').value||'').trim(), location:(document.getElementById('ob-pl').value||'').trim(), period:'', status:'negociação'});
+        state.projects.push(np); state.activeProjectId=np.id; state.activeTab='resumo';
+        endOnboarding('Tudo pronto'+(CFG.userName?', '+CFG.userName:'')+'!');
+      }
+    });
+    el.addEventListener('keydown',e=>{
+      if (e.key==='Escape'){ e.preventDefault(); if(ob.mode==='settings'){ closeOB(); renderApp(); } else endOnboarding(); }
+      else if (e.key==='Enter' && e.target.tagName==='INPUT' && ob.mode==='onboarding'){ e.preventDefault(); if(ob.step<OB_STEPS-1) obGo(1); else el.querySelector('[data-obact=finish-project]').click(); }
+    });
+  })();
+
   /* ---------- actualizações da app ---------- */
   function updateCard(){
     let el=document.getElementById('update-card');
@@ -1634,6 +1919,7 @@
 
   applyTheme();
   renderApp();
+  if (!CFG.onboarded) openOB('onboarding');
 })();
 </script>
 </body>
